@@ -30,7 +30,7 @@ double * get_h(double start, double factor, int n){
 
 void derivatives ( double x, int n){
     ofstream ofile;
-    ofile.open("results.txt");
+    ofile.open("./Excercises/3_1/results3_1.txt");
     ofile << "f(x) = atan(x), x=sqrt(2), where h is the step size" << endl;
 
     clock_t start, finish;
