@@ -48,6 +48,8 @@ void derivatives ( double x, int n){
         ofile << " h = " << setw(7) << h[i] << setprecision(15) << " |  f'(x) = " << setw(17) << result << " | Error = " << abs(actual_value-result) << endl;
     }
 
+    delete [] h;
+
     finish = clock();
     double clock_delta = finish - start;
     double clock_clocks = CLOCKS_PER_SEC;
