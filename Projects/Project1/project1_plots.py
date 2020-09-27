@@ -8,7 +8,6 @@ def plot_1b():
     x=data['x']
     u=data['u']
     v=data['v']
-    e=data['e']
 
 
     plt.plot(x,u)
