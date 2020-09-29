@@ -1,0 +1,18 @@
+Algorithm: QDsingle
+
+==== Matrix A initial conditions: ====
+p_0: 0
+p_max: 5
+matrix nxn dim(n): 120
+h: 0.0416667
+
+==== Jacobi method details and results ====
+iterations: 23764
+runtime: 1s
+First 5 eigenvalues: 
+lambda	n	
+2.99945736429	1
+6.99728797622	2
+10.9935210984	3
+14.9921912152	4
+19.039182737	5

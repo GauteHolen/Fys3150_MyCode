@@ -14,6 +14,20 @@ with the same variable-names.
 
 */
 
+
+double jacobi_method::vector_length(vec v, int n){
+
+    double sum_v = 0;
+    double v_i;
+    for (int i = 0; i < n; i++)
+    {
+        v_i=v(i);
+        sum_v+=v_i*v_i;
+    }
+    return sqrt(sum_v);
+
+}
+
 void jacobi_method::init(mat A, int n){
     initialize(A, n);
     max_iterations = (double) n * (double) n * (double) n ;
@@ -88,9 +102,11 @@ void jacobi_method::update_max_off_diag(){
 void jacobi_method::solve(){
 
     iterations = 0;
+
+    start = clock();
+
     update_max_off_diag();
 
-    m_R.print();
 
     while (max_off_diag > epsilon && iterations < max_iterations)
     {
@@ -99,9 +115,34 @@ void jacobi_method::solve(){
         update_max_off_diag();
         iterations++;
     }
-    
-    cout<<"iterations: "<<iterations<<endl;
-    m_R.print();
+
+    finish = clock();
+    runtime=(double) (finish-start)/ (double) CLOCKS_PER_SEC;
+
+
+    eigenvalues = vec(m_N);
+    for (int i = 0; i < m_N; i++)
+    {
+        eigenvalues(i)=m_A(i,i);
+    }
+
+    eigenvalues=sort(eigenvalues);
+    //cout<<"iterations: "<<iterations<<endl;
 
 }
 
+mat jacobi_method::get_eigenvectors(){
+    return m_R;
+}
+
+vec jacobi_method::get_eigenvalues(){
+    return eigenvalues;
+}
+
+jacobi_method::off_diag jacobi_method::get_max_off_diag(){
+    off_diag x;
+    x.l=l;
+    x.k=k;
+    x.max_off_diag=max_off_diag;
+    return x;
+}
