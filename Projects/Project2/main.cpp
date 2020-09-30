@@ -52,7 +52,7 @@ int main(int argc, char const *argv[]) {
     }
 
     jacobi_method solver;
-    solver.init(A,n);
+    solver.init(A,n,algorithm);
     solver.solve();
     filename+=".txt";
     util.write_to_file(filename);

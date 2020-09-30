@@ -28,8 +28,8 @@ double jacobi_method::vector_length(vec v, int n){
 
 }
 
-void jacobi_method::init(mat A, int n){
-    initialize(A, n);
+void jacobi_method::init(mat A, int n, string algorithm){
+    initialize(A, n, algorithm);
     max_iterations = (double) n * (double) n * (double) n ;
 }
 

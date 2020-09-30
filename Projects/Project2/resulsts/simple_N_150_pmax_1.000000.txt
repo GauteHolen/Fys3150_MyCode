@@ -1,0 +1,18 @@
+Algorithm: simple
+
+==== Matrix A initial conditions: ====
+p_0: 0
+p_max: 1
+matrix nxn dim(n): 150
+h: 0.00666667
+
+==== Jacobi method details and results ====
+iterations: 39837
+runtime: 4.108945s
+First 5 eigenvalues: 
+lambda	analytical	error	n	
+9.73896271547	9.73896271547	3.58824081559e-13	1
+38.9516354221	38.9516354221	3.62376795238e-13	2
+87.6253736252	87.6253736252	1.98951966013e-12	3
+155.739109248	155.739109248	4.26325641456e-13	4
+243.263359752	243.263359752	7.36122274247e-12	5

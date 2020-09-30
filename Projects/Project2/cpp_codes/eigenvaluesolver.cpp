@@ -1,7 +1,8 @@
 #include "eigenvaluesolver.hpp"
 
-void eigenvaluesolver::initialize(mat A, int n){
+void eigenvaluesolver::initialize(mat A, int n, string algo){
 
+    algorithm=algo;
     epsilon = 1.0e-8;
     m_N=n;
     m_A=A;
@@ -22,11 +23,30 @@ void eigenvaluesolver::write_to_file(string filename){
     ofile<<"runtime: ";
     ofile<<setprecision(12)<<runtime<<"s"<<endl;
     ofile<<"First 5 eigenvalues: "<<endl;
-    ofile<<"lambda\t"<<"n\t"<<endl;
-    for (int i = 0; i < 5; i++)
-    {
-        ofile<<setprecision(12)<<eigenvalues(i)<<"\t"<<i+1<<endl;
+    
+
+    if(algorithm=="simple"){
+        ofile<<"lambda\t"<<"analytical\t"<<"error\t"<<"n\t"<<endl;
+        mat_utils utils;
+        utils.init(0.0,1.0,m_N,algorithm);
+        vec analytical = utils.get_analytical_eigval_simple();
+
+        for (int i = 0; i < 5; i++)
+        {
+            ofile<<setprecision(12)<<eigenvalues(i)<<"\t"<<setprecision(12)<<analytical(i)<<"\t"<<setprecision(12)<<abs(analytical(i)-eigenvalues(i))<<"\t"<<i+1<<endl;
+        }
     }
+
+    else
+    {
+        ofile<<"lambda\t"<<"n\t"<<endl;
+        for (int i = 0; i < 5; i++)
+        {
+            ofile<<setprecision(12)<<eigenvalues(i)<<"\t"<<i+1<<endl;
+        }
+    }
+    
+    
     
     ofile.close();
 }

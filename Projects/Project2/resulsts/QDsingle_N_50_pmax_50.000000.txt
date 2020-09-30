@@ -2,17 +2,17 @@ Algorithm: QDsingle
 
 ==== Matrix A initial conditions: ====
 p_0: 0
-p_max: 5
+p_max: 50
 matrix nxn dim(n): 50
-h: 0.1
+h: 1
 
 ==== Jacobi method details and results ====
-iterations: 4046
-runtime: 0.085782s
+iterations: 323
+runtime: 0.006609s
 First 5 eigenvalues: 
 lambda	n	
-2.99687147646	1
-6.98434031373	2
-10.9618318623	3
-14.931972292	4
-18.9273135363	5
+2.6867202568	1
+6.11300882253	2
+11.0573528563	3
+18.0317897845	4
+27.0202129245	5

@@ -10,7 +10,7 @@ TEST_CASE("Arma eigenvector comparison", "[arma_eigenvec]"){
     mat_utils.init(0,1,n,"unit_test");
     mat A = mat_utils.get_simple_A();
     jacobi_method jacobi_method;
-    jacobi_method.init(A,n);
+    jacobi_method.init(A,n,"unit_test");
     jacobi_method.solve();
     mat eigenvec_jacobi = jacobi_method.get_eigenvectors();
     vec eigval;
@@ -39,7 +39,7 @@ TEST_CASE("eigenvector orthogonality", "[eigenvec_orthogonal]"){
     mat_utils.init(0.0,1.0,n,"unit_test");
     mat A = mat_utils.get_simple_A();
     jacobi_method jacobi_method;
-    jacobi_method.init(A,n);
+    jacobi_method.init(A,n,"unit_test");
     jacobi_method.solve();
     mat eigenvec_jacobi = jacobi_method.get_eigenvectors();
 
@@ -61,7 +61,7 @@ TEST_CASE("Test max off diag", "[max_off_diag]"){
     A(0,3)=5.0;
 
     jacobi_method solver;
-    solver.init(A, 5);
+    solver.init(A, 5,"unit_test");
     solver.update_max_off_diag();
     jacobi_method::off_diag max_off_diag;
     max_off_diag = solver.get_max_off_diag();

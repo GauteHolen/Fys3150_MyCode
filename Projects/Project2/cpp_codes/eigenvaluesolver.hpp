@@ -11,7 +11,7 @@ using namespace arma;
 class eigenvaluesolver{
 
     protected:
-
+        string algorithm;
         clock_t start, finish;
         double runtime;
         double epsilon;
@@ -23,7 +23,7 @@ class eigenvaluesolver{
         ofstream ofile;
 
     public:
-        void initialize(mat A, int n);
+        void initialize(mat A, int n, string algorithm);
         void write_to_file(string filename);
         void print_eigenvalues();
         
@@ -41,7 +41,7 @@ class jacobi_method : public eigenvaluesolver {
         int k;
 
     public:
-        void init(mat A, int n);
+        void init(mat A, int n, string algorithm);
         void solve();
         mat get_eigenvectors();
         vec get_eigenvalues();

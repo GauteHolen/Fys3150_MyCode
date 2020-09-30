@@ -1,0 +1,19 @@
+Algorithm: QDdouble
+
+==== Matrix A initial conditions: ====
+p_0: 0
+p_max: 50
+matrix nxn dim(n): 100
+h: 0.5
+w_r: 0.5
+
+==== Jacobi method details and results ====
+iterations: 3796
+runtime: 0.19316s
+First 5 eigenvalues: 
+lambda	n	
+2.20962075099	1
+4.03989825481	2
+5.83781174869	3
+7.58108595532	4
+9.25711080832	5
