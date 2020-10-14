@@ -10,7 +10,7 @@ void eigenvaluesolver::initialize(mat A, int n, string algo){
     //Setting up the matrix for the eigenvectors
     m_R = mat(n,n);
     m_R.eye();
-
+#include <iostream>
 }
 
 
