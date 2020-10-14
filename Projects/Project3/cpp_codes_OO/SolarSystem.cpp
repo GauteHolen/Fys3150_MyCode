@@ -5,6 +5,7 @@ SolarSystem::SolarSystem(string name_){
     name = name_;
     pi = arma::datum::pi;
     G = 4*pi*pi;
+    foldername = "./Projects/Project3/results/"+name;
 
 };
 
@@ -90,7 +91,7 @@ void SolarSystem::update(){
                 bodies[i].velocity(j)+=0.5*h*(a(j)+a_new);
             }
 
-            bodies[i].write_to_file(foldername,t);
+            bodies[i].write_to_file(t);
 
         }
 
@@ -99,12 +100,28 @@ void SolarSystem::update(){
 }
 
 void SolarSystem::run(int n, double t_n){
+
+    foldername +="_n_"+to_string(n)+"_tn_"+to_string(t_n);
+    //const char * folderpath = foldername.c_str();
+    int check = mkdir(foldername.c_str(),0777);
+    if(check!=0){
+        cout<<"Not able to create directory"<<endl;
+    }
+
+    for (int i = 0; i < n_bodies; i++)
+    {
+        bodies[i].set_folderpath(foldername);
+    }
+    
+
     h = t_n/(double) n;
     foldername=name+"_n_"+to_string(n)+"_tn_"+to_string(t_n);
     while (t<t_n){
         update();
         t+=h;
     }
+
+
 
 }
 

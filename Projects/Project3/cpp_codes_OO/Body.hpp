@@ -16,11 +16,13 @@ public:
     arma::vec3 velocity;
     arma::vec3 Fg;
     double mass;
+    string folderpath;
 
-    void write_to_file(string foldername, double t);
+    void write_to_file(double t);
     Body(arma::vec3 pos, arma::vec3 vel, double m, string name_);
     Body(const Body &body);
     void print();
+    void set_folderpath(string path);
 
 private:
     string filename;

@@ -1,10 +1,10 @@
 #include "Body.hpp"
 
 
-void Body::write_to_file(string foldername,double t){
+void Body::write_to_file(double t){
 
 
-    ofile.open("./Projects/Project3/results/"+filename,std::ios::app);
+    ofile.open(folderpath+"/"+filename,std::ios::app);
     ofile<<position(0)<<"\t"<<position(1)<<"\t"<<position(2)<<"\t"<<t<<endl;
     ofile.close();
 
@@ -20,18 +20,22 @@ void Body::print(){
     Fg.print();
 }
 
+void Body::set_folderpath(string path){
+    folderpath = path;
+    ofile.open(folderpath+"/"+filename);
+    ofile.close();
+}
 
 Body::Body(arma::vec3 pos, arma::vec3 vel, double m,string name_){
     position = pos;
     velocity = vel;
     mass = m;
     name = name_;
+    
 
 
     Fg = {0,0,0};
     filename=name+"_xyzt.txt";
-    ofile.open("./Projects/Project3/results/"+filename);
-    ofile.close();
 
 };
 

@@ -3,6 +3,7 @@
 
 #include "Body.hpp"
 #include <armadillo>
+#include <sys/stat.h>
 
 class SolarSystem
 {
