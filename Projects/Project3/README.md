@@ -10,7 +10,7 @@ main.out has input parameters:
 n(integration points)
 t_n (number of years the simulation runs)
 
-<img src="./Projects/Project3/screenshots/terminal_run.png">
+<img src="/Projects/Project3/screenshots/terminal_run.png">
 
 ## Program structure
 
