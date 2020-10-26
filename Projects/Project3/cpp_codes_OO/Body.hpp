@@ -30,6 +30,7 @@ public:
 
     double get_r();
     double get_speed();
+    arma::vec3 get_momentum_vector();
 
 private:
     string filename;

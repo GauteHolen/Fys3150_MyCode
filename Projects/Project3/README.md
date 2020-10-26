@@ -29,11 +29,14 @@ This is the default scenario, and constructs the earth sun system with a static 
 ### mercury
 This scenario constructs the earth mercury system and is used to explore the perihelion precession of mercury with relativity.
 
-### espace
+### escape
 This scenario will construct many earth-like bodies with different velocities used to study escape velocity.
 
 ### 3body
 This scenario will construct the earth, sun and jupiter system, with various masses of jupiter through the optional input argument. This scenario is used to study how jupiter's mass will change the orbit of the earth.
+
+### solar_system
+This scenario will add planets, and then add the sun with a position and velocity so that the center of mass remains at the origin, and so that the angular momentum of the system remains zero.
 
 ## Program structure
 

@@ -39,6 +39,7 @@ public:
     double system_radius;
 
     double get_angular_momentum();
+    void add_sun_zero_momentum();
 
 
 };

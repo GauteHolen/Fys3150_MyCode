@@ -114,7 +114,26 @@ int main(int argc, char const *argv[]){
 
     }
 
-    
+    else if(scenario=="solar_system"){
+
+        vec3 pos_E = {0.9128884513088843,0.3928032801600736, 0.00006577938183713410}; 
+        vec3 v_E = {-0.006957269992142644, 0.01579734315560513,-0.0000002582593092148153};
+        v_E = v_E*365.24;
+        Body earth(pos_E, v_E, 0.000003, "earth",true);
+        solarsystem.add_body(earth);
+
+
+        vec3 pos_J = {2.556653950007264e+00,-4.428596022378350e+00,-3.882840438937561e-02}; 
+        vec3 v_J = {6.442741439253338e-03,4.130146620372741e-03,-1.612738541610256e-04};
+        v_J = v_J * 365.24;
+        double m_J = 0.000956 * atof(argv[7]);
+        Body jupiter(pos_J, v_J,m_J , "jupiter",true);
+        solarsystem.add_body(jupiter);
+
+
+        solarsystem.add_sun_zero_momentum();
+    }
+
 
     else
     {

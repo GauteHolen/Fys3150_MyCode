@@ -4,4 +4,4 @@ Relativistic correction: false
 n = 100000
 t_n = 30years
 stepsize = 0.0003years
-runtume = 2.17519seconds
+runtume = 4.06996seconds

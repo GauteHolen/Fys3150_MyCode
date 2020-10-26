@@ -13,22 +13,49 @@ SolarSystem::SolarSystem(string name_){
     foldername = "./Projects/Project3/results/"+name;
 
 };
+
+
+
+void SolarSystem::add_sun_zero_momentum(){
+
+    arma::vec3 r_sun = {0,0,0};
+    arma::vec3 p_sun = {0,0,0};
+    arma::vec3 v_sun = {0,0,0};
+    
+    for (int i = 0; i < n_bodies; i++)
+    {   
+        r_sun.print();
+        double m = bodies[i].mass;
+
+        //The orbital radius of the sun
+        r_sun(0)-=bodies[i].position(0)*m;
+        r_sun(1)-=bodies[i].position(1)*m;
+        r_sun(2)-=bodies[i].position(2)*m;
+
+        //The direction of the momentum is opposite of unit vector of the rest of the system's momentum
+
+        p_sun -= bodies[i].get_momentum_vector();
+    }
+
+    Body sun(r_sun,p_sun,1.0,"sun",true,true);
+    add_body(sun);
+
+}
  
 
 double SolarSystem::get_angular_momentum(){
 
-    double L = 0;
     double v;
     double r;
     double m;
+    arma::vec3 L_vec = {0,0,0};
     for (int i = 0; i < n_bodies; i++)
-    {
-        v = bodies[i].get_speed();
-        r = bodies[i].get_r();
-        m = bodies[i].mass;
-        L += v*r*m;
+    {   
+        arma::vec3 x = bodies[i].position;
+        arma::vec3 p = bodies[i].get_momentum_vector();
+        L_vec += arma::cross(x,p);
     }
-    return L;
+    return sqrt(L_vec(0)*L_vec(0)+L_vec(1)*L_vec(1)+L_vec(2)*L_vec(2));
 }
 
 

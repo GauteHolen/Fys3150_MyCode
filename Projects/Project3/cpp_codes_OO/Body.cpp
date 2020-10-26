@@ -18,7 +18,12 @@ double Body::get_speed(){
     return sqrt(velocity(0)*velocity(0)+velocity(1)*velocity(1)+velocity(2)*velocity(2));
 }
 
+arma::vec3 Body::get_momentum_vector(){
 
+    arma::vec3 p = {velocity(0)*mass,velocity(1)*mass,velocity(2)*mass};
+    return p;
+
+}
 
 
 void Body::print(){

@@ -4,14 +4,14 @@ import sys
 do_compile=True
 do_tests=True
 
-n=100000
+n=2000
 years=30
-name = "beta2.9999"
-scenario = "earth_sun"
-beta = 2.9999
+name = "solar_system"
+scenario = "solar_system"
+beta = 2.0
 
 #The optional arg might do different things for different scenarios
-optional_arg = 1000
+optional_arg = 1
 
 
 all_cpp_codes = "./Projects/Project3/cpp_codes_OO/*.cpp"

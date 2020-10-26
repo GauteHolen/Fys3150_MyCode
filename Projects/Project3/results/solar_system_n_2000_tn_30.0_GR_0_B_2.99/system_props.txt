@@ -1,7 +1,7 @@
 Number of bodies: 3
 Beta = 2.9999
 Relativistic correction: false
-n = 100000
+n = 2000
 t_n = 30years
-stepsize = 0.0003years
-runtume = 2.17519seconds
+stepsize = 0.015years
+runtume = 0.589456seconds

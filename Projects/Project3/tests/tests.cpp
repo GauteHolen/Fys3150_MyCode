@@ -15,10 +15,13 @@
 
 using namespace arma;
 
+double pi = arma::datum::pi;
+double epsilon = 1e-8;
+
 TEST_CASE("Conservation of angular momentum", "[Angular momentum]"){
 
-    double pi = arma::datum::pi;
-    SolarSystem solarsystem("test");
+    
+    SolarSystem solarsystem("test_earth_sun");
 
     vec3 pos_E = {1.0, 0.0, 0.0}; vec3 v_E = {0.0, 2*pi, 0.0};
     Body earth(pos_E, v_E, 0.000003, "earth",true);
@@ -36,6 +39,8 @@ TEST_CASE("Conservation of angular momentum", "[Angular momentum]"){
     double L_f = solarsystem.get_angular_momentum();
 
 
-    double epsilon = 1e-8;
+    
     REQUIRE(abs(L_f-L_i) < epsilon);
 }
+
+
