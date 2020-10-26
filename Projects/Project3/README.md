@@ -7,10 +7,33 @@ The non object oriented solvers for euler and verlet methods are found in the cp
 The object oriented solar system cpp files are found in the cpp_codes_OO folder. It is compiled and run by running main.py, creating exeutable main.out.
 
 main.out has input parameters:
-n(integration points)
-t_n (number of years the simulation runs)
+    
+    int n(integration points)
+    double t_n (number of years the simulation runs)
+    string name (the name of the run, which will determine the name of the output folder)
+    string scenario
+    string GR (if "true" then accounts for general relativity)
+    double beta (changes from 2-3 to have different force of gravity)
+    optional_arg (in case any scenario has additional args)
+
+All these parameters can be set in main.py before running. When running through the python wrapper in main.py, the terminal will look like this.
 
 <img src="/Projects/Project3/screenshots/terminal_run.png">
+
+## Scenarios
+The program will construct different scenarios automatically:
+
+### earth_sun
+This is the default scenario, and constructs the earth sun system with a static sun.
+
+### mercury
+This scenario constructs the earth mercury system and is used to explore the perihelion precession of mercury with relativity.
+
+### espace
+This scenario will construct many earth-like bodies with different velocities used to study escape velocity.
+
+### 3body
+This scenario will construct the earth, sun and jupiter system, with various masses of jupiter through the optional input argument. This scenario is used to study how jupiter's mass will change the orbit of the earth.
 
 ## Program structure
 
