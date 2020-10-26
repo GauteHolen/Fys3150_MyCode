@@ -4,9 +4,13 @@
 
 The non object oriented solvers for euler and verlet methods are found in the cpp_codes_nonOO folder. It has it's own python program for compilation and execution called run_non_object_oriented.py.
 
-The object oriented solar system cpp files are found in the cpp_codes_OO folder. It is compiled and run by running main.py, creating exeutable main.out. main.py will also run the plotting methods generating plots automatically.
+The object oriented solar system cpp files are found in the cpp_codes_OO folder. It is compiled and run by running main.py, creating exeutable main.out.
 
-main.out has input parameters n(integration points) and t_n (number of years the simulation runs.)
+main.out has input parameters:
+n(integration points)
+t_n (number of years the simulation runs)
+
+<img src="./Projects/Project3/screenshots/terminal_run.png">
 
 ## Program structure
 

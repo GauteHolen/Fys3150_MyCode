@@ -19,14 +19,37 @@ class ObjectData:
             z=self.z[i]
             self.r.append(np.sqrt(x*x+y*y+z*z))
 
+    def perihelion_precession(self,start_perihelion=False):
+
+        if(start_perihelion==True):
+            x_p=self.x[0]
+        else:
+            x_p=None
+
+        for i in range(1,len(self.x)-1):
+            if self.r[i]<self.r[i+1] and self.r[i]<self.r[i-1]:
+                if(x_p==None):
+                    x_p = self.x[i]
+                
+                y_p = self.x[i]
+                print(y_p)
+
+        theta = np.arctan(y_p/x_p)
+        theta = np.rad2deg(theta)
+        return [x_p,y_p,theta]
+
+
 
     def plot_xyz(self, ax=None):
 
         if ax==None:
             fig=plt.figure()
             ax=ax = plt.axes(projection='3d')
-            
-        ax.scatter3D(self.x,self.y,self.z)
+        
+        if self.name.lower() == "sun":
+            ax.scatter3D(self.x,self.y,self.z)
+
+        ax.plot3D(self.x,self.y,self.z)
     
     def plot_xyt(self, ax=None):
         if ax==None:
@@ -42,3 +65,12 @@ class ObjectData:
 
 
         ax.plot(self.t,self.r)
+
+    def plot_xy(self, ax=None):
+        if ax==None:
+            fig=plt.figure()
+            ax=ax = plt.axes()
+
+        if self.name.lower() == "sun":
+            ax.scatter(self.x,self.y)
+        ax.plot(self.x,self.y)

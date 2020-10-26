@@ -19,10 +19,17 @@ public:
     string folderpath;
 
     void write_to_file(double t);
-    Body(arma::vec3 pos, arma::vec3 vel, double m, string name_);
+    Body(arma::vec3 pos, arma::vec3 vel, double m, string name_,bool affected_by_Fg_, bool contributes_to_Fg_);
+    Body(arma::vec3 pos, arma::vec3 vel, double m, string name_,bool affected_by_Fg_);
     Body(const Body &body);
     void print();
     void set_folderpath(string path);
+    bool affected_by_Fg;
+    bool contributes_to_Fg;
+    bool lost;
+
+    double get_r();
+    double get_speed();
 
 private:
     string filename;

@@ -1,0 +1,7 @@
+Number of bodies: 2
+Beta = 2
+Relativistic correction: true
+n = 10000
+t_n = 20years
+stepsize = 0.002years
+runtume = 1.22759seconds
