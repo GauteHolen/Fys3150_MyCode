@@ -12,15 +12,20 @@ inline double Ising::deltaE(int x, int y){
 }
 
 
-Ising::Ising(int _L, double _T){
-    setup(_L, _T);
+Ising::Ising(int _L, double _T, bool _random_spins){
+    setup(_L, _T, _random_spins);
 }
 
-void Ising::setup(int _L, double _T){
+void Ising::setup(int _L, double _T, bool _random_spins){
     T = _T;
     L = _L;
     n_spins=L*L;
+
     spins=arma::mat(L, L, arma::fill::ones);
+    if(_random_spins){
+        init_random_spins();
+    }
+    
     init_total_E();
     init_total_M();
     init_w();
@@ -35,10 +40,12 @@ void Ising::run(int mcs){
     Sampler sampler(mcs);
     for (int i = 0; i < mcs; i++)
     {
-        update();
         sampler.sample(E,M,i);
+        update();
     }
     sampler.print();
+    sampler.write_to_file("test");
+    sampler.statistics(T,n_spins);
 }
 
 
@@ -90,7 +97,7 @@ void Ising::init_total_E(){
 }
 void Ising::init_total_M(){
     M=0;
-        for (int y = 0; y < L; y++)
+    for (int y = 0; y < L; y++)
     {
         for (int x = 0; x < L; x++)
         {
@@ -104,4 +111,17 @@ void Ising::init_w(){
     w = arma::vec(17);
     for( int de =-8; de <= 8; de++) w(de+8) = 0;
     for( int de =-8; de <= 8; de+=4) w(de+8) = exp(-de/T);
+}
+
+void Ising::init_random_spins(){
+    for (int y = 0; y < L; y++)
+    {
+        for (int x = 0; x < L; x++)
+        {
+            if(unif(rng)<0.5){
+                spins(x,y)=-1;
+            }
+        }
+        
+    }
 }

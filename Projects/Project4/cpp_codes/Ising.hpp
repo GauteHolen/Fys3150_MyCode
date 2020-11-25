@@ -14,12 +14,18 @@ public:
     Sampler(int _samples);
     void sample(double _E, double _M, int i);
     void print();
+    void write_to_file(string _filename);
+    void statistics(double T, int n_spins);
 
 
 private:
     arma::vec E;
     arma::vec M;
     int samples;
+
+    string filename;
+    ofstream ofile;
+
 
 };
 
@@ -32,12 +38,13 @@ class  Ising
 {
 public:
     arma::mat spins;
-    Ising(int _L, double _T);
-    void setup(int _L, double _T);
+    Ising(int _L, double _T, bool _random_spins);
+    void setup(int _L, double _T, bool _random_spins);
 
     void update();
     void run(int mcs);
     void print();
+    void init_random_spins();
 
 
 
@@ -54,6 +61,7 @@ private:
     mt19937_64 rng;
     uniform_real_distribution<double> unif;
 
+    bool random_spins;
     void init_total_E();
     void init_total_M();
     void init_w();

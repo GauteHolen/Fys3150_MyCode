@@ -12,10 +12,10 @@ int main(int argc, char const *argv[]){
     double temperature = atof(argv[2]);
     int mcs = atoi(argv[3]);
 
-    Ising ising(L,temperature);
-    //ising.print();
+    Ising ising(L,temperature,true);
+    ising.print();
     ising.run(mcs);
-    //ising.print();
+    ising.print();
 
 
 }

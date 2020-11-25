@@ -1,0 +1,12 @@
+===== S T A T I S T I CS ======
+Number of spins = 4
+Temperature = 10
+Monte Carlo Cycles mcs = 100
+-------------------------------
+Total mean E = -2
+Total mean M = -0.08
+-------------------------------
+mean E per spin = -0.5
+mean M per spin = -0.02
+Specific Heat CV per spin = 0.0432323
+Susceptebility X per spin = 0.0169535
