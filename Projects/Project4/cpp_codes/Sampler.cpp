@@ -14,14 +14,16 @@ void Sampler::init(int _samples, int _n_spins, bool _T_Gradient){
     samples = _samples;
     E=arma::vec(samples);
     M=arma::vec(samples);
+    flips=arma::vec(samples);
 
     //Initializing possible enrgies
     Ei=arma::vec(9,arma::fill::zeros);
 }
 
-void Sampler::sample(double _E, double _M, int i){
+void Sampler::sample(double _E, double _M, int _flips, int i){
     E(i) = _E;
     M(i) = _M;
+    flips(i) = _flips;
 }
 
 void Sampler::sample_E(int E){
@@ -41,7 +43,7 @@ void Sampler::print(){
 
 }
 
-void Sampler::statistics(double T, int n_spins, int n_flips){
+void Sampler::statistics(double T, int sample_start, int n_spins, int n_flips){
 
     double Evar = arma::var(E);
     double Mvar = arma::var(M);
@@ -58,12 +60,13 @@ void Sampler::statistics(double T, int n_spins, int n_flips){
     if(T_gradient==false){    
         cout<<"Creating statistics file"<<endl;
 
-        string statfilename = "stat_"+to_string(n_spins)+"spins_T_"+to_string(T);
+        string statfilename = "stat_"+to_string(n_spins)+"spins_T_"+to_string(T)+"_mcs_"+to_string(samples+sample_start)+"_ss_"+to_string(sample_start);
         ofile.open("./Projects/Project4/results/"+statfilename+".txt");
         ofile<<"===== S T A T I S T I CS ======"<<endl;
         ofile<<"Number of spins = "<<n_spins<<endl;
         ofile<<"Temperature = "<<T<<endl;
-        ofile<<"Monte Carlo Cycles mcs = "<<samples<<endl;
+        ofile<<"Started sampling after Monte Carlo Cycle mcs = "<<sample_start<<endl;
+        ofile<<"Toral Monte Carlo Cycles mcs = "<<samples+sample_start<<endl;
         ofile<<"Accepted new configurations = "<<n_flips<<endl;
         ofile<<"-------------------------------"<<endl;
         ofile<<"Total mean E = "<<Eavg<<endl;
@@ -102,12 +105,13 @@ void Sampler::T_gradient_filename(string _filename){
 }
 
 void Sampler::write_to_file(string _filename){
+    cout<<"Creating file with E, M and A(t) vectors..."<<endl;
     filename = _filename;
     ofile.open("./Projects/Project4/results/"+filename+".txt");
-    ofile<<"E_i"<<"\t"<<"M_i"<<endl;
+    ofile<<"E_i"<<"\t"<<"M_i"<<"\t"<<"A(t)"<<endl;
     for (int i = 0; i < samples; i++)
     {
-        ofile<<E(i)/n_spins<<"\t"<<M(i)/n_spins<<endl;
+        ofile<<E(i)/n_spins<<"\t"<<M(i)/n_spins<<"\t"<<flips(i)/n_spins<<endl;
     }
     
 

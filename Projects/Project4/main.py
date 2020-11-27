@@ -5,10 +5,11 @@ mode = "single"
 L=2
 temperature = 1
 msc = 1000
+start_sampling = 0
 random_start = 1 #1 is true, else is false
 
 
-args = mode + " " + str(L) + " " +str(msc) + " " +str(random_start) + " " +str(temperature)
+args = mode + " " + str(L) + " " +str(msc)+ " " + str(start_sampling) + " " +str(random_start) + " " +str(temperature)
 
 #Using *.cpp is so-called RegEx (regular expression) that searches for all files that ends with .cpp and applies the command you've written to them.
 #In this case, we want to search the directory ./cpp_codes for all files that ends with .cpp

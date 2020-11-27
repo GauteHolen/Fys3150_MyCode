@@ -59,10 +59,14 @@ void Ising::run(int mcs, int start_sampling, bool prob_dist, bool T_gradient){
         update();
     }
 
+    if(T_gradient==false){cout<<"Running "<<mcs<<" cycles at T = "<<T<<endl;}
+
     if(prob_dist==true){
         for (int i = 0; i < mcs-start_sampling; i++)
         {
-            sampler.sample(E,M,i);
+            sampler.sample(E,M,flips_cycle,i);
+            n_flips+=flips_cycle;
+            flips_cycle=0;
             probability_dist();
             update();
         }
@@ -71,18 +75,20 @@ void Ising::run(int mcs, int start_sampling, bool prob_dist, bool T_gradient){
     else{
         for (int i = 0; i < mcs-start_sampling; i++)
         {
-            sampler.sample(E,M,i);
+            sampler.sample(E,M,flips_cycle,i);
+            n_flips+=flips_cycle;
+            flips_cycle=0;
             update();
         }
     }
 
     if(T_gradient==false){
         sampler.write_to_file("EM_rng_"+to_string(random_spins)+"_mcs_"+to_string(mcs)+"_L_"+to_string(L)+"_T_"+to_string(T));
-        sampler.statistics(T,n_spins, n_flips);
+        sampler.statistics(T,start_sampling,n_spins, n_flips);
     }
     else
     {
-        sampler.statistics(T,n_spins, n_flips);
+        sampler.statistics(T,start_sampling,n_spins, n_flips);
     }
     
 }
@@ -105,8 +111,7 @@ void Ising::update(){
             spins(x,y)=spin*(-1);
             M+= 2*spins(x,y);
             E += dE;
-            n_flips++;
-
+            flips_cycle++;
         }
     }
     

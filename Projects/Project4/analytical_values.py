@@ -3,7 +3,7 @@ import math
 
 e=math.e
 J=1
-T=1
+T=2.4
 k_b=1
 B=1/(k_b*T)
 
@@ -16,5 +16,5 @@ E2 = pow((16*J*pow(e,-8*B*J)-16*J*pow(e,8*B*J)),2)/Z
 CV = (1/(k_b*T))*(E2-EE**2)
 
 print("Z = "+str(Z))
-print("E[E] = "+str(EE))
+print("E[E] = "+str(EE/4))
 print("CV = "+str(CV))

@@ -1,0 +1,23 @@
+===== S T A T I S T I CS ======
+Number of spins = 400
+Temperature = 2.4
+Started sampling after Monte Carlo Cycle mcs = 0
+Toral Monte Carlo Cycles mcs = 1000
+Accepted new configurations = 103365
+-------------------------------
+Total mean E = -506.068
+Total mean M = 116.324
+-------------------------------
+mean E per spin = -1.26517
+variance E per spin = 8.70597
+mean M per spin = 0.29081
+variance M per spin = 93.9342
+Specific Heat CV per spin = 1.51145
+Susceptebility X per spin = 16.308
+-------------------------------
+Probability distribution for energies:
+P(-4) = 0
+P(-2) = 0.561383
+P(0) = 0.229075
+P(2) = 0.209542
+P(4) = 0

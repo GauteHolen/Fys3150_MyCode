@@ -36,18 +36,26 @@ def plot_gradient(filenames):
     
     plt.figure(1)
     plt.title("Specific heat as function of temperarure")
+    plt.xlabel("t")
+    plt.ylabel("CV")
     plt.legend(["L = 40","L = 60","L = 80","L = 100"])
 
     plt.figure(2)
     plt.title("Susceptibility as function of temperarure")
+    plt.xlabel("t")
+    plt.ylabel("X")
     plt.legend(["L = 40","L = 60","L = 80","L = 100"])
 
     plt.figure(3)
     plt.title("Mean energy as function of temperarure")
+    plt.xlabel("t")
+    plt.ylabel("<E>")
     plt.legend(["L = 40","L = 60","L = 80","L = 100"])
 
     plt.figure(4)
     plt.title("Mean magnetic moment as function of temperarure")
+    plt.xlabel("t")
+    plt.ylabel("<|M|>")
     plt.legend(["L = 40","L = 60","L = 80","L = 100"])
     
     plt.show()

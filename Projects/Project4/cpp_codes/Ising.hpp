@@ -14,10 +14,10 @@ public:
     Sampler();
     Sampler(int _samples, int _n_spins, bool _T_Gradient);
     void init(int _samples, int _n_spins, bool _T_Gradient);
-    void sample(double _E, double _M, int i);
+    void sample(double _E, double _M, int _flips, int i);
     void print();
     void write_to_file(string _filename);
-    void statistics(double T, int n_spins, int n_flips);
+    void statistics(double T, int sample_start, int n_spins, int n_flips);
     void sample_E(int E);
     void T_gradient_filename(string _filename);
 
@@ -25,6 +25,7 @@ public:
 private:
     arma::vec E;
     arma::vec M;
+    arma::vec flips;
     arma::vec Ei;
     arma::vec PE;
     int samples;
@@ -63,6 +64,7 @@ private:
     int L;  //Length of lattice
     int n_spins; //Number of spinsnt i, int limit, int add
     int n_flips; // Number of times the spin is flipped
+    int flips_cycle;
     arma::vec w;
     arma::vec avg;
 

@@ -14,8 +14,9 @@ int main(int argc, char const *argv[]){
 
     int L = atoi(argv[2]);
     int mcs = atoi(argv[3]);
+    int start_sampling = atoi(argv[4]);
     bool random_spins = false;
-    int rng =atoi(argv[4]);
+    int rng =atoi(argv[5]);
     if(rng==1){
         random_spins=true;
     }
@@ -23,9 +24,9 @@ int main(int argc, char const *argv[]){
 
     if(T_mode == "gradient"){
 
-        double T_start = atof(argv[5]);
-        double T_end = atof(argv[6]);
-        int n_steps = atoi(argv[7]);
+        double T_start = atof(argv[6]);
+        double T_end = atof(argv[7]);
+        int n_steps = atoi(argv[8]);
 
         double T_step = (T_end-T_start)/((double) n_steps);
         
@@ -36,6 +37,10 @@ int main(int argc, char const *argv[]){
         ofile.close();
         cout<<"Running simulations on all available threads..."<<endl;
         cout<<"["<<ends;
+
+
+        double start = omp_get_wtime();
+
         {
         #pragma omp parallel for   
             for (int i = 0; i < n_steps; i++)
@@ -44,20 +49,23 @@ int main(int argc, char const *argv[]){
                 double T = T_start+i*T_step;
                 Ising ising(L,T,random_spins);
                 ising.sampler.T_gradient_filename(filename);
-                ising.run(mcs,mcs/5,false,true);
+                ising.run(mcs,start_sampling,false,true);
             }
         }
         cout<<"]"<<endl;
-        cout<<"Done"<<endl;
+        double finish = omp_get_wtime();
+        double runtime=finish-start;
+        cout<<"runtime: "<<runtime<<" seconds"<<endl;
 
     }
 
     else if (T_mode == "single")
     {
-        double temperature = atof(argv[5]);
+        double temperature = atof(argv[6]);
         Ising ising(L,temperature,random_spins);
-        ising.run(mcs, mcs/5, true, false);
+        ising.run(mcs, start_sampling, true, false);
     }
     
+    cout<<"Done"<<endl;
 
 }
