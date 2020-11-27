@@ -2,11 +2,12 @@
 Number of spins = 4
 Temperature = 10
 Monte Carlo Cycles mcs = 100
+Accepted new configurations = 318
 -------------------------------
-Total mean E = -2
-Total mean M = -0.08
+Total mean E = -1.28
+Total mean M = 0.5
 -------------------------------
-mean E per spin = -0.5
-mean M per spin = -0.02
-Specific Heat CV per spin = 0.0432323
-Susceptebility X per spin = 0.0169535
+mean E per spin = -0.32
+mean M per spin = 0.125
+Specific Heat CV per spin = 0.0314182
+Susceptebility X per spin = 0.012197
