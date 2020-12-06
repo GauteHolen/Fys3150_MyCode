@@ -2,3 +2,8 @@
 .vscode
 launch.json
 tasks.json
+.aux
+.fls
+.log
+.synctex.gz
+.out
