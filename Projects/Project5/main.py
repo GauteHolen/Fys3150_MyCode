@@ -9,7 +9,7 @@ do_compile = False
 
 mode = "default"
 a = 4
-b = 4
+b = 1
 c = 0.5
 
 S_0 = 300
@@ -49,4 +49,5 @@ os.system("echo executing...")
 os.system("./main.out" + " " +args) #Execute code
 
 
-plot.plot(filename,a,b,c,N)
+plot.plot_SIR("RK_solver_"+filename,a,b,c,N,1)
+plot.plot_SIR("MC_solver_"+filename,a,b,c,N,2)

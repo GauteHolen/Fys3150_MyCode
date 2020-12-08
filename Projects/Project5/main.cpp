@@ -1,5 +1,6 @@
 #include "./cpp_codes/functions.hpp"
 #include "./cpp_codes/RK_solver.hpp"
+#include "./cpp_codes/MC_solver.hpp"
 
 
 int main(int argc, char const *argv[]){
@@ -17,6 +18,9 @@ int main(int argc, char const *argv[]){
     double n_steps = atof(argv[11]);
     double N = S_0 + R_0 + I_0;
 
+    cout<<"a = "<<a<<endl;
+    cout<<"b = "<<b<<endl;
+    cout<<"c = "<<c<<endl;
     
 
     RK_solver solver;
@@ -26,5 +30,10 @@ int main(int argc, char const *argv[]){
     solver.expected_values();
     solver.write_to_file(filename);
 
+    MC_solver mc_solver;
+    mc_solver.init_constants(a,b,c);
+    mc_solver.init_population(N,S_0,I_0,R_0);
+    mc_solver.run(t_0,t_n,"test");
+    mc_solver.write_to_file(filename);
 
 }

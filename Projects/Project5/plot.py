@@ -1,11 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.offsetbox import AnchoredText
+import cycler
 
-def plot(filename,a,b,c,N):
+def plot_SIR(filename,a,b,c,N,nfig):
 
     path = "Projects/Project5/results/"+filename+".txt"
+
+    mode = ""
+
+    if(filename.split("_")[0]=="RK"):
+        mode = "Runge-Kutta"
+
+    elif(filename.split("_")[0]=="MC"):
+        mode = "Monte Carlo"
+
 
 
     df = pd.read_csv(path,sep='\t')
@@ -21,17 +33,31 @@ def plot(filename,a,b,c,N):
 
 
 
+    #color = plt.cm.get_cmap(name='Set3')
 
-    plt.figure(1)
-    plt.title("Disease development over time")
-    plt.plot(t,S, color='b')
-    plt.plot(t,I, color = 'r')
-    plt.plot(t,R, color = 'g')
-    plt.axhline(y=N*ES, color='b', linestyle='dashed')
-    plt.axhline(y=N*EI, color='r', linestyle='dotted')
-    plt.axhline(y=N*ER, color='g', linestyle='dashdot')
-    plt.legend(["S","I","R"])
+    n = 3
+    color = plt.cm.Accent(np.linspace(0, n/12,n))
+    mpl.rcParams['axes.prop_cycle'] = cycler.cycler('color', color)
+    plt.figure(nfig)
+    ax = plt.axes()
+    #plt.title("Disease development over time")
+    plt.plot(t,S)
+    plt.plot(t,I)
+    plt.plot(t,R)
+    mpl.rcParams['axes.prop_cycle'] = cycler.cycler('color', color)
+    plt.axhline(y=N*ES, color=color[0], linestyle='dashed')
+    plt.axhline(y=N*EI, color=color[1], linestyle='dashdot')
+    plt.axhline(y=N*ER, color=color[2], linestyle='dotted')
+    #ax.set_xscale('log')
+    plt.legend(["Susceptible","Infected","Recovering"])
     plt.ylabel("population")
-    plt.xlabel("time")
-    plt.savefig("./Projects/Project5/plots/"+filename+".png")
+    boxstr = '     '.join(('a = '+str(a),('b = '+str(b)),('c = '+str(c))))
+    if(mode == "Monte Carlo"):
+        plt.title("Disease development Monte Carlo\n"+boxstr)
+        plt.xlabel("MC cycles")
+    elif(mode == "Runge-Kutta"):
+        plt.title("Disease development fourth order Runge-Kutta\n"+boxstr)
+        plt.xlabel("time")
+    
+    plt.savefig("./Projects/Project5/Report/plots/"+filename+".png")
     

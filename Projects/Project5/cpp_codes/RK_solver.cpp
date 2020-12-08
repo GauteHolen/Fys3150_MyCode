@@ -10,12 +10,13 @@ RK_solver::RK_solver(){
 }
 
 void RK_solver::write_to_file(string filename){
-    ofile.open("./Projects/Project5/results/"+filename+".txt");
+    ofile.open("./Projects/Project5/results/RK_solver_"+filename+".txt");
     ofile<<"S\tI\tR\tt"<<endl;
     for (int i = 0; i < n_steps; i++)
     {
         ofile<<S(i)<<"\t"<<I(i)<<"\t"<<R(i)<<"\t"<<t(i)<<endl;
     }
+    ofile.close();
 }
 
 void RK_solver::expected_values(){
