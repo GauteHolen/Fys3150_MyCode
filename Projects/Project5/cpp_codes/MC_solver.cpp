@@ -19,12 +19,17 @@ void MC_solver::init_constants(double _a, double _b, double _c, double _d, doubl
     A = _A;
 }
 
+void MC_solver::init_bulkvacc(double _f_BULK, int _bulk_stock){
+    f_BULK = _f_BULK;
+    vaccine_stock = _bulk_stock;
+}
+
 void MC_solver::write_to_file(string filename){
     ofile.open("./Projects/Project5/results/MC_solver_"+filename+".txt");
-    ofile<<"S\tI\tR\te\td\tdI\tt"<<endl;
+    ofile<<"S\tI\tR\te\td\tdI\tf\tt"<<endl;
     for (int i = 0; i < n_steps; i++)
     {
-        ofile<<S(i)<<"\t"<<I(i)<<"\t"<<R(i)<<"\t"<<E(i)<<"\t"<<D(i)<<"\t"<<DI(i)<<"\t"<<t(i)<<endl;
+        ofile<<S(i)<<"\t"<<I(i)<<"\t"<<R(i)<<"\t"<<E(i)<<"\t"<<D(i)<<"\t"<<DI(i)<<"\t"<<Vaccinations(i)<<"\t"<<t(i)<<endl;
     }
     ofile.close();
 }
@@ -54,13 +59,16 @@ void MC_solver::init_population(int _N, int _S, int _I, int _R){
     }
 }
 
-void MC_solver::run(double t_0, double t_n,string mode){
+void MC_solver::run(double t_0, double t_n, string _mode){
     /* initialize rng seed: */
+    mode = _mode;
     int seed = time(0);
     rng.seed(seed);
 
     double dt = min(5.0/(a*(double) N), 1.0/(b*(double) N));
     dt = min(dt,1.0/(c*(double) N));
+    //dt = min(dt, 1.0/(f_BULK*(double) N));
+    P_BULK = f_BULK*dt;
     n_steps = (int) (t_n-t_0)/dt;
 
     S = arma::vec(n_steps);
@@ -70,6 +78,7 @@ void MC_solver::run(double t_0, double t_n,string mode){
     D = arma::vec(n_steps);
     DI = arma::vec(n_steps);
     E = arma::vec(n_steps);
+    Vaccinations = arma::vec(n_steps);
 
     S(0) = (double) S_0; double Si;
     I(0) = (double) I_0; double Ii;
@@ -78,16 +87,25 @@ void MC_solver::run(double t_0, double t_n,string mode){
     D(0) = 0;
     DI(0) = 0;
     E(0) = 0;
+    Vaccinations(0) = 0;
 
-    transition.push_back(&MC_solver::SVaccine);
-    transition.push_back(&MC_solver::ItoR);
-    transition.push_back(&MC_solver::RtoS);
-
-    //TODO update every person but one cycle per update, also update P values every cycle
+    if(mode=="BULK"){
+        transition.push_back(&MC_solver::SBulkVaccine);
+        transition.push_back(&MC_solver::ItoR);
+        transition.push_back(&MC_solver::RtoS);
+        cout<<"BULK vaccine mode"<<endl;
+    }
+    else{
+        transition.push_back(&MC_solver::SVaccine);
+        transition.push_back(&MC_solver::ItoR);
+        transition.push_back(&MC_solver::RtoS);
+        cout<<"constant vaccin rate mode"<<endl;
+    }
+    
     
     int new_state, old_state;
-    //State counter {susceptible, infected, resistant, born, dead (natural), dead (disease)}
-    arma::vec state_counter = {(double) S_0, (double) I_0, (double) R_0, 0.0, 0.0, 0.0};
+    //State counter {susceptible, infected, resistant, born, dead (natural), dead (disease), vaccines}
+    state_counter = {(double) S_0, (double) I_0, (double) R_0, 0.0, 0.0, 0.0, 0.0};
 
     for (int i = 0; i < n_steps-1; i++)
     {   
@@ -104,9 +122,11 @@ void MC_solver::run(double t_0, double t_n,string mode){
         P_ItoR = b*dt;//*Ii*dt;
         P_RtoS = c*dt;//*Ri*dt;
 
+        //Resets state_counter
         state_counter(3) = 0;
         state_counter(4) = 0;
         state_counter(5) = 0;
+        state_counter(6) = 0;
 
         for (int j = 0; j < N; j++)
         {
@@ -149,6 +169,7 @@ void MC_solver::run(double t_0, double t_n,string mode){
         E(i+1)=state_counter(3);
         D(i+1)=state_counter(4);
         DI(i+1)=state_counter(5);
+        Vaccinations(i+1)=state_counter(6);
         t(i+1)=ti+dt;
 
     }

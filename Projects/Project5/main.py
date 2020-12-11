@@ -6,13 +6,13 @@ import math
 from stats import StatModule
 
 
-do_compile = True
+do_compile = False
 
 
-mode = "vaccine"
+mode = "BULK"
 
 a = 4
-b = 1
+b = 4
 c = 0.5
 
 S_0 = 300
@@ -24,13 +24,16 @@ t_0 = 0
 t_n = 5
 n_steps = 300
 
-e = 0.0
-d = 0.0
-dI = 0.0
+e = 0.0011
+d = 0.001
+dI = 0.001
 
 f = 2
 w = 2*math.pi
 A = 0.0
+
+f_BULK = 1 #Vaccinations per year
+vaccine_stock = 200
 
 filename = mode+"_a_"+str(a)+"_b_"+str(b)+"_c_"+str(c)
 
@@ -38,6 +41,7 @@ filename = mode+"_a_"+str(a)+"_b_"+str(b)+"_c_"+str(c)
 args =mode+" "+filename+" "+str(a)+" "+str(b)+" "+str(c)+" "+str(S_0)+" "+str(I_0)+" "+str(R_0)+" "+str(t_0)+" "+str(t_n)+" "+str(n_steps)
 args += " "+str(d) + " "+str(dI) + " "+str(e)
 args += " "+str(f) + " "+str(w) + " "+str(A)
+args += " "+str(f_BULK) + " "+str(vaccine_stock)
 
 
 

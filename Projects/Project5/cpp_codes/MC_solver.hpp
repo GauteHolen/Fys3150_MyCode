@@ -13,11 +13,14 @@ class MC_solver{
         MC_solver();
         void init_constants(double _a, double _b, double _c, double _d, double _dI, double _e, double _f, double _w, double _A);
         void init_population(int _N, int _S, int _I, int _R);
+        void init_bulkvacc(double _f_BULK, int _bulk_stock);
         void run(double t_0, double t_n, string mode);
         void write_to_file(string filename);
 
 
     private:
+        string mode;
+
         //RNG
         mt19937_64 rng;
         uniform_real_distribution<double> unif;
@@ -32,9 +35,11 @@ class MC_solver{
         double dI; //death rate due to desease
         double e;   //birth rate
         double f;
+        double f_BULK;
         double w;
         double A;
         int N;
+        int vaccine_stock;
 
         std::vector<Person> population;
         std::vector<int (MC_solver::*)()> transition;
@@ -43,6 +48,8 @@ class MC_solver{
         int I_0;
         int R_0;
 
+        arma::vec state_counter;
+
         arma::vec S;
         arma::vec I;
         arma::vec R;
@@ -50,12 +57,14 @@ class MC_solver{
         arma::vec DI;
         arma::vec E;
         arma::vec t;
+        arma::vec Vaccinations;
 
         //Transition probabilities
         double P_StoI;
         double P_ItoR;
         double P_RtoS;
         double P_StoR;
+        double P_BULK;
 
         //Transition functions
         int StoI();
@@ -63,6 +72,7 @@ class MC_solver{
         int RtoS();
         int SSeasonal();
         int SVaccine();
+        int SBulkVaccine();
 
 };
 

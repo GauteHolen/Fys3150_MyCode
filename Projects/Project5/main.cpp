@@ -29,6 +29,8 @@ int main(int argc, char const *argv[]){
     double f = atof(argv[15]);
     double w = atof(argv[16]);
     double A = atof(argv[17]);
+    double f_BULK = atof(argv[18]);
+    double bulk_stock = atoi(argv[19]);
     
 
     RK_solver solver;
@@ -41,7 +43,10 @@ int main(int argc, char const *argv[]){
     MC_solver mc_solver;
     mc_solver.init_constants(a,b,c,d,dI,e,f,w,A);
     mc_solver.init_population(N,S_0,I_0,R_0);
-    mc_solver.run(t_0,t_n,"test");
+    if(mode=="BULK"){
+        mc_solver.init_bulkvacc(f_BULK, bulk_stock);
+    }
+    mc_solver.run(t_0,t_n,mode);
     mc_solver.write_to_file(filename);
 
 }
