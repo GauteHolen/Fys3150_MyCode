@@ -21,6 +21,14 @@ int main(int argc, char const *argv[]){
     cout<<"a = "<<a<<endl;
     cout<<"b = "<<b<<endl;
     cout<<"c = "<<c<<endl;
+
+    double d = atof(argv[12]);
+    double dI = atof(argv[13]);
+    double e = atof(argv[14]);
+
+    double f = atof(argv[15]);
+    double w = atof(argv[16]);
+    double A = atof(argv[17]);
     
 
     RK_solver solver;
@@ -31,7 +39,7 @@ int main(int argc, char const *argv[]){
     solver.write_to_file(filename);
 
     MC_solver mc_solver;
-    mc_solver.init_constants(a,b,c);
+    mc_solver.init_constants(a,b,c,d,dI,e,f,w,A);
     mc_solver.init_population(N,S_0,I_0,R_0);
     mc_solver.run(t_0,t_n,"test");
     mc_solver.write_to_file(filename);

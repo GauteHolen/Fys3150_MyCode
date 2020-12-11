@@ -11,7 +11,7 @@ using namespace std;
 class MC_solver{
     public:
         MC_solver();
-        void init_constants(double _a, double _b, double _c);
+        void init_constants(double _a, double _b, double _c, double _d, double _dI, double _e, double _f, double _w, double _A);
         void init_population(int _N, int _S, int _I, int _R);
         void run(double t_0, double t_n, string mode);
         void write_to_file(string filename);
@@ -25,10 +25,17 @@ class MC_solver{
         ofstream ofile;
         int n_steps;
 
-        double a;
-        double b;
-        double c;
+        double a; //Infection rate
+        double b; //recovery rate 
+        double c; //lose immunity rate
+        double d; //natural death rate
+        double dI; //death rate due to desease
+        double e;   //birth rate
+        double f;
+        double w;
+        double A;
         int N;
+
         std::vector<Person> population;
         std::vector<int (MC_solver::*)()> transition;
 
@@ -39,17 +46,23 @@ class MC_solver{
         arma::vec S;
         arma::vec I;
         arma::vec R;
+        arma::vec D;
+        arma::vec DI;
+        arma::vec E;
         arma::vec t;
 
         //Transition probabilities
         double P_StoI;
         double P_ItoR;
         double P_RtoS;
+        double P_StoR;
 
         //Transition functions
         int StoI();
         int ItoR();
         int RtoS();
+        int SSeasonal();
+        int SVaccine();
 
 };
 

@@ -1,13 +1,16 @@
 import os
 import sys
 import plot
+import math
+
+from stats import StatModule
 
 
+do_compile = True
 
-do_compile = False
 
+mode = "vaccine"
 
-mode = "default"
 a = 4
 b = 1
 c = 0.5
@@ -18,14 +21,25 @@ R_0 = 0
 N=S_0+I_0+R_0
 
 t_0 = 0
-t_n = 10
+t_n = 5
 n_steps = 300
+
+e = 0.0
+d = 0.0
+dI = 0.0
+
+f = 2
+w = 2*math.pi
+A = 0.0
 
 filename = mode+"_a_"+str(a)+"_b_"+str(b)+"_c_"+str(c)
 
 
-
 args =mode+" "+filename+" "+str(a)+" "+str(b)+" "+str(c)+" "+str(S_0)+" "+str(I_0)+" "+str(R_0)+" "+str(t_0)+" "+str(t_n)+" "+str(n_steps)
+args += " "+str(d) + " "+str(dI) + " "+str(e)
+args += " "+str(f) + " "+str(w) + " "+str(A)
+
+
 
 
 
@@ -49,5 +63,11 @@ os.system("echo executing...")
 os.system("./main.out" + " " +args) #Execute code
 
 
-plot.plot_SIR("RK_solver_"+filename,a,b,c,N,1)
-plot.plot_SIR("MC_solver_"+filename,a,b,c,N,2)
+plotstats = StatModule(a,b,c,d,dI,e,f,w,A)
+plotstats.read_data("MC_solver_"+filename)
+plotstats.plot_ISR()
+plotstats.plot_IdI()
+
+#plot.plot_SIR("RK_solver_"+filename,a,b,c,N,1,"simple")
+
+#plot.plot_SIR("MC_solver_"+filename,a,b,c,N,2,"vital")
