@@ -66,10 +66,10 @@ class StatModule:
 
         for i in range(len(self.S)):
             self.N.append(self.I[i]+self.R[i]+self.S[i])
-            if self.I[i] == 0 and self.has_I_zero==False:
+            if self.I[i] <= 0.99 and self.has_I_zero==False:
                 self.t_I_zero = self.t[i]
                 self.has_I_zero = True
-                self.I_zero_index2 = int(i*2)
+                self.I_zero_index2 = int(i*1.3)
 
         if self.has_I_zero == True:
             i = int(self.I_zero_index2)
@@ -83,38 +83,47 @@ class StatModule:
             self.Vacc=self.Vacc[0:i]
             self.N=self.N[0:i]
     
-    def plot_ISR(self):
+    def plot_ISR(self, fig=None, ax1=None, ax2=None, linestyle='-'):
+
+        if fig==None:
+            multifig=False
+        else:
+            multifig=True
+        
 
         n = 8
         color = plt.cm.Accent(np.linspace(0, n/8,n))
         mpl.rcParams['axes.prop_cycle'] = cycler.cycler('color', color)
-        fig, ax1 = plt.subplots()
-
+        if fig==None:
+            fig, ax1 = plt.subplots()
+            if self.has_vacc:
+                 ax2 = ax1.twinx()
+                
         #plt.title("Disease development over time")
-        ax1.plot(self.t,self.I)
-        ax1.plot(self.t,self.S)
-        ax1.plot(self.t,self.R)
-        mpl.rcParams['axes.prop_cycle'] = cycler.cycler('color', color)
-        
+        ax1.plot(self.t,self.I, color=color[0], linestyle=linestyle)
+        ax1.plot(self.t,self.S, color=color[1], linestyle=linestyle)
+        ax1.plot(self.t,self.R,  color=color[2], linestyle=linestyle)
+
         legend=["I","S","R"]
 
-        ax1.axvline(x=self.t[self.max_I_index], ymin=0,ymax=1, color='green', linestyle='dashed')
+        ax1.axvline(x=self.t[self.max_I_index], ymin=0,ymax=1, color='green', linestyle=linestyle)
         legend.append("I$_{peak}$")
         
         if self.has_vacc:
-            ax2 = ax1.twinx()
             total_Vacc=[]
             total_Vacc.append(self.Vacc[0])
             for i in range(1,len(self.Vacc)):
                 total_Vacc.append(total_Vacc[i-1]+self.Vacc[i])
-            ax2.plot(self.t,total_Vacc[0:len(self.t)], color=color[4])
+            ax2.plot(self.t,total_Vacc[0:len(self.t)], color=color[4], linestyle=linestyle)
+
+            
             legend.append("$V_{total}$")
             ax2.set_ylabel("Vaccinations", color=color[4])
             ax2.tick_params(axis='y', labelcolor=color[4])
 
         
         if self.has_I_zero:
-            ax1.axvline(x=self.t_I_zero, ymin=0,ymax=1, color='grey', linestyle='dashed')
+            ax1.axvline(x=self.t_I_zero, ymin=0,ymax=1, color='grey', linestyle=linestyle)
             legend.append("I$_{zero}$")
 
 
@@ -138,10 +147,12 @@ class StatModule:
             ax1.axhline(y=self.N[0]*ER, color=color[2], linestyle='dotted')
 
         fig.legend(legend, loc=(0.74,0.33))
-        plt.savefig("./Projects/Project5/Report/plots/"+self.filename+"_SIR.png")
+        
+        if multifig==False:
+            plt.savefig("./Projects/Project5/Report/plots/"+self.filename+"_SIR.png")
 
 
-    def plot_IdI(self):
+    def plot_IdI(self, fig=None, ax1=None):
 
         #TODO FIX the stupid filter on the birth/death rates
 

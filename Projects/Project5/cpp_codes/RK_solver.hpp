@@ -8,6 +8,9 @@
 
 using namespace std;
 
+/**
+    @brief Object holding values and member functions for running Runge-Kutta Solver
+*/
 class RK_solver {
 
 

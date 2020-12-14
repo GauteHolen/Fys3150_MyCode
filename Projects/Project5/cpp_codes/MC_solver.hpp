@@ -8,18 +8,28 @@
 
 using namespace std;
 
+/**
+    @brief Object holding values and member functions for running Monte Carlo Solver
+*/
 class MC_solver{
     public:
         MC_solver();
         void init_constants(double _a, double _b, double _c, double _d, double _dI, double _e, double _f, double _w, double _A);
         void init_population(int _N, int _S, int _I, int _R);
         void init_bulkvacc(double _f_BULK, int _bulk_stock);
-        void run(double t_0, double t_n, string mode);
+        void run(double t_0, double t_n, string mode, int extra_seed);
         void write_to_file(string filename);
+
+        double init_multiple_runs(string filename);
+        void write_multiple_runs(string filename);
+        void multiple_run_time(string filename, double multiple_start_time);
 
 
     private:
         string mode;
+
+        double runtime;
+        double multiple_run_start_time;
 
         //RNG
         mt19937_64 rng;
@@ -27,6 +37,7 @@ class MC_solver{
 
         ofstream ofile;
         int n_steps;
+        double dt;
 
         double a; //Infection rate
         double b; //recovery rate 

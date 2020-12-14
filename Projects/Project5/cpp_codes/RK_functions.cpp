@@ -1,5 +1,11 @@
 #include "RK_solver.hpp"
 
+/*
+================================================================================================
+This file contains the RK functions for susceptible, infected and recovering in the SIRS model
+================================================================================================
+*/
+
 //Simple case
 double RK_solver::susceptible(double S, double I, double R, double t){
     return c*R-((a*S*I)/ N);

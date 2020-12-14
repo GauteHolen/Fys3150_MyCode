@@ -79,3 +79,43 @@ def plot_SIR(filename,a,b,c,N,nfig,scenario):
     
     plt.savefig("./Projects/Project5/Report/plots/"+filename+".png")
     
+
+def plot_std(filename):
+    path = "Projects/Project5/results/"+filename+".txt"
+    df = pd.read_csv(path,sep='\t')
+    
+    peak=df['Peak[t]'].values.tolist()
+    peak = [x for x in peak if str(x) != 'nan']
+    over=df['I_over[t]'].values.tolist()
+    over = [x for x in over if str(x) != 'nan']
+
+    dataset = [over, peak]
+    labels = ["Infection over", "Infection peak"]
+    outfiles = ["I_over","I_peak"]
+
+    for i in range(len(dataset)):
+        data=dataset[i]
+        label=labels[i]
+        outfile=outfiles[i]
+        fig1, ax1 = plt.subplots()
+        ax1.hist(data, density=True, bins=30, label=label)
+        mean = np.mean(data)
+        ax1.axvline(mean, color='black', linestyle = 'dashed', label='mean')
+        std = np.std(data)
+        ax1.axvline(mean+std, color='black', linestyle = 'dotted', label='1 std')
+        ax1.axvline(mean-std, color='black', linestyle = 'dotted')
+        plt.legend(loc='upper left')
+        ax1.set_xlabel("time")
+        ax1.set_ylabel("Occurance")
+
+        textstr = '\n'.join((
+        r'$\mu=%.2f$' % (mean, ),
+        r'$\sigma=%.2f$' % (std, )))
+        # these are matplotlib.patch.Patch properties
+        props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+
+        # place a text box in upper left in axes coords
+        ax1.text(0.8, 0.95, textstr, transform=ax1.transAxes, fontsize=11,
+                verticalalignment='top', bbox=props)
+        
+        plt.savefig("./Projects/Project5/Report/plots/"+filename+outfile+".png")

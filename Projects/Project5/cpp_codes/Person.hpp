@@ -7,6 +7,11 @@
 
 using namespace std;
 
+/**
+ * 
+ * @brief Object holding a persons state, with simple get and set functions
+ * 
+ */
 class Person{
     public:
         Person(int initial_state);

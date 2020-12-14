@@ -2,19 +2,20 @@ import os
 import sys
 import plot
 import math
+import matplotlib.pyplot as plt
 
 from stats import StatModule
 
 
-do_compile = True
-do_execute = True
+do_compile = False
+do_execute = False
 
 #TODO f independent of S in RK and MC? fixed vaccine rate independent of population?
 
-mode = "all_test"
+mode = "multiple"
 
 a = 4
-b = 1
+b = 4
 c = 0.5
 
 S_0 = 300
@@ -23,7 +24,7 @@ R_0 = 0
 N=S_0+I_0+R_0
 
 t_0 = 0
-t_n = 10
+t_n = 5
 n_steps = 5000
 
 e = 0.011
@@ -32,10 +33,12 @@ dI = 0.01
 
 f = 2
 w = 2*math.pi
-A = 0.5
+A = 4
 
 f_BULK = 0 
 vaccine_stock = 0
+
+n_runs = 300
 
 filename = mode+"_a_"+str(a)+"_b_"+str(b)+"_c_"+str(c)
 
@@ -44,6 +47,7 @@ args =mode+" "+filename+" "+str(a)+" "+str(b)+" "+str(c)+" "+str(S_0)+" "+str(I_
 args += " "+str(d) + " "+str(dI) + " "+str(e)
 args += " "+str(f) + " "+str(w) + " "+str(A)
 args += " "+str(f_BULK) + " "+str(vaccine_stock)
+args += " "+str(n_runs)
 
 
 
@@ -63,22 +67,34 @@ main_cpp="./Projects/Project5/main.cpp"
 
 if do_compile:
     os.system("echo compiling...")
-    os.system("g++ -O" + " " + main_cpp + " " + all_cpp_codes + " " + compiler_flags + " -o main.out") #compile codes
+    os.system("g++ -O3 -fopenmp"+ " " + main_cpp + " " + all_cpp_codes + " " + compiler_flags + " -o main.out") #compile codes
 
 if do_execute:
     os.system("echo executing...")
     os.system("./main.out" + " " +args) #Execute code
 
 
-plotstatsMC = StatModule(a,b,c,d,dI,e,f,w,A)
-plotstatsMC.read_data("MC_solver_"+filename)
-plotstatsMC.plot_ISR()
-plotstatsMC.plot_IdI()
+if mode!="multiple":
+    plotstatsMC = StatModule(a,b,c,d,dI,e,f,w,A)
+    plotstatsMC.read_data("MC_solver_"+filename)
+    plotstatsMC.plot_ISR()
+    plotstatsMC.plot_IdI()
 
-plotstatsRK = StatModule(a,b,c,d,dI,e,f,w,A)
-plotstatsRK.read_data("RK_solver_"+filename)
-plotstatsRK.plot_ISR()
-plotstatsRK.plot_IdI()
+
+    plotstatsRK = StatModule(a,b,c,d,dI,e,f,w,A)
+    plotstatsRK.read_data("RK_solver_"+filename)
+    plotstatsRK.plot_ISR()
+    plotstatsRK.plot_IdI()
+
+    fig, ax1 = plt.subplots()
+    ax2 = ax1.twinx()
+    plotstatsMC.plot_ISR(fig=fig, ax1=ax1, ax2=ax2)
+    plotstatsRK.plot_ISR(fig=fig, ax1=ax1,ax2=ax2, linestyle='dashed')
+    plt.title("RK (dashed) and MC (line) disease development")
+    plt.savefig("./Projects/Project5/Report/plots/Compare_"+filename+".png")
+
+else:
+    plot.plot_std("MC_solver_"+filename)
 
 #plot.plot_SIR("RK_solver_"+filename,a,b,c,N,1,"simple")
 

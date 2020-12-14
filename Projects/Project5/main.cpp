@@ -1,6 +1,7 @@
 #include "./cpp_codes/functions.hpp"
 #include "./cpp_codes/RK_solver.hpp"
 #include "./cpp_codes/MC_solver.hpp"
+#include <omp.h>
 
 
 int main(int argc, char const *argv[]){
@@ -82,13 +83,38 @@ int main(int argc, char const *argv[]){
     Monte Carlo solver
     ======================*/
 
-    MC_solver mc_solver;
-    mc_solver.init_constants(a,b,c,d,dI,e,f,w,A);
-    mc_solver.init_population(N,S_0,I_0,R_0);
-    if(mode=="BULK"){
-        mc_solver.init_bulkvacc(f_BULK, bulk_stock);
+
+    if(mode=="multiple"){
+        int n_runs = atoi(argv[20]);
+        MC_solver mc_multiple;
+        cout<<"Multiple run mode"<<endl;
+        double start_time = mc_multiple.init_multiple_runs(filename);
+        {
+        #pragma omp parallel for 
+            for (int i = 0; i < n_runs; i++)
+            {   
+                MC_solver *mc_solver = new MC_solver;
+                mc_solver->init_constants(a,b,c,d,dI,e,f,w,A);
+                mc_solver->init_population(N,S_0,I_0,R_0);
+                mc_solver->run(t_0,t_n,mode,i+1);
+                mc_solver->write_multiple_runs(filename);
+                delete  mc_solver;
+            }
+        }
+        mc_multiple.multiple_run_time(filename,start_time);
     }
-    mc_solver.run(t_0,t_n,mode);
-    mc_solver.write_to_file(filename);
+    else
+    {   
+        MC_solver mc_solver;
+        mc_solver.init_constants(a,b,c,d,dI,e,f,w,A);
+        mc_solver.init_population(N,S_0,I_0,R_0);
+        if(mode=="BULK"){
+            mc_solver.init_bulkvacc(f_BULK, bulk_stock);
+        }
+        mc_solver.run(t_0,t_n,mode,1);
+        mc_solver.write_to_file(filename);   
+    }
+    
+    
 
 }

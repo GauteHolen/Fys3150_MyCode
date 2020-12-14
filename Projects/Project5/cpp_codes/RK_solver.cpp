@@ -1,14 +1,30 @@
 #include "RK_solver.hpp"
-//#include "functions.hpp"
 
 
 
-//typedef double RK_solver::(RK_solver::*dtfunc)(double S, double I, double t);
+/*
+================================================================================================
+This file contains the methods and implementation of running the fourth order Runge-Kutta
+solver for the SIRS ODE.
+
+The solve function takes pointers to the different S, I and R functions in RK_functions.cpp
+as input arguments, as it will run the same way regardless of how S, I and R is defined.
+
+If possible, the solve function will use a simplified set of differential equations of only
+2 equations utilizing only S and I. However, if the simplification is not run, the full 3 
+ equations are used (S, I and R).
+================================================================================================
+*/
 
 RK_solver::RK_solver(){
 
 }
 
+/**
+*   @brief Writes S, I, R, e, d, dI, f and t to a file
+*
+*   @param filename the name of the output file
+*/
 void RK_solver::write_to_file(string filename){
     ofile.open("./Projects/Project5/results/RK_solver_"+filename+".txt");
     ofile<<"S\tI\tR\te\td\tdI\tf\tt"<<endl;
@@ -29,6 +45,9 @@ void RK_solver::write_to_file(string filename){
     ofile.close();
 }
 
+/**
+*   @brief Prints expected values of S, I and R
+*/
 void RK_solver::expected_values(){
     ES=b/a;
     EI=(1-b/a)/(1+b/c);
@@ -38,7 +57,19 @@ void RK_solver::expected_values(){
     cout<<"Expected R = "<<ER*(double)N<<endl;
 }
 
+/**
+*   @brief Initializes the parameters for the simulation
 
+    @param _a infection rate
+    @param _b recovery rate
+    @param _c loss of immunity rate
+    @param _d natural death rate
+    @param _dI death rate due to infection
+    @param _e birth rate
+    @param _f vaccination rate
+    @param _w angular frequency of seasonality (default 2pi)
+    @param _A Max amplitude of seasonality
+*/
 void RK_solver::init_constants(double _a, double _b, double _c, double _d, double _dI, double _e, double _f, double _w, double _A){
     a=_a;
     b=_b;
@@ -51,6 +82,14 @@ void RK_solver::init_constants(double _a, double _b, double _c, double _d, doubl
     A=_A;
 }
 
+/**
+*   @brief Sets the initial distribution of infected, suspectible and recovering in the population
+
+    @param _N total population
+    @param _S susceptible
+    @param _I infected
+    @param _R recovering
+*/
 void RK_solver::init_population(int _N, int _S, int _I, int _R){
     N = (double) _N;
     S_0 = _S;
@@ -61,7 +100,20 @@ void RK_solver::init_population(int _N, int _S, int _I, int _R){
 
 
 
-
+/**
+ * @brief solves the ODE for SIRS model. NOTE: init_constants and init_populations must be run first! 
+ * If possible, the solve function will use a simplified set of differential equations of only
+ * 2 equations utilizing only S and I. However, if the simplification is not run, the full 3 
+ * equations are used (S, I and R).
+ * 
+ * @param t_0 Start time (usually zero)
+ * @param t_n End time
+ * @param _n_steps The number of time steps performed in the ODE solver
+ * @param fS pointer to Susceptible member function
+ * @param fI pointer to Infected member function
+ * @param fR pointer to Recovering member function
+ * 
+ */
 void RK_solver::solve(double t_0, double t_n, int _n_steps, 
                     double (RK_solver::*fS) (double,double,double,double), 
                     double (RK_solver::*fI) (double,double,double,double), 
