@@ -1,5 +1,5 @@
 #include "RK_solver.hpp"
-#include "functions.hpp"
+//#include "functions.hpp"
 
 
 
@@ -11,10 +11,20 @@ RK_solver::RK_solver(){
 
 void RK_solver::write_to_file(string filename){
     ofile.open("./Projects/Project5/results/RK_solver_"+filename+".txt");
-    ofile<<"S\tI\tR\tt"<<endl;
+    ofile<<"S\tI\tR\te\td\tdI\tf\tt"<<endl;
     for (int i = 0; i < n_steps; i++)
     {
-        ofile<<S(i)<<"\t"<<I(i)<<"\t"<<R(i)<<"\t"<<t(i)<<endl;
+        double Si = S(i);
+        double Ii = I(i);
+        double Ri = R(i);
+        double Ni = Si+Ri+Ii;
+        double di = Ni*d*h;
+        double dIi = Ii*dI*h;
+        double ei = e*(Si+Ri+Ii)*h;
+        double fi = f*Si*h;
+
+        ofile<<Si<<"\t"<<Ii<<"\t"<<Ri<<"\t"<<ei<<
+        "\t"<<di<<"\t"<<dIi<<"\t"<<fi<<"\t"<<t(i)<<endl;
     }
     ofile.close();
 }
@@ -29,30 +39,33 @@ void RK_solver::expected_values(){
 }
 
 
-void RK_solver::init_constants(double _a, double _b, double _c){
+void RK_solver::init_constants(double _a, double _b, double _c, double _d, double _dI, double _e, double _f, double _w, double _A){
     a=_a;
     b=_b;
     c=_c;
+    d=_d;
+    dI=_dI;
+    e=_e;
+    f=_f;
+    w=_w;
+    A=_A;
 }
 
 void RK_solver::init_population(int _N, int _S, int _I, int _R){
-    N = _N;
+    N = (double) _N;
     S_0 = _S;
     I_0 = _I;
     R_0 = _R;
 }
 
 
-double RK_solver::susceptible(double S, double I, double t){
-    return c*(N-S-I)-((a*S*I)/(double) N);
-}
-
-double RK_solver::infected(double S, double I, double t){
-    return ((a*S*I)/(double) N) - b*I;
-}
 
 
-void RK_solver::solve(double t_0, double t_n, int _n_steps, double (RK_solver::*fS) (double,double,double), double (RK_solver::*fI) (double,double,double)){
+
+void RK_solver::solve(double t_0, double t_n, int _n_steps, 
+                    double (RK_solver::*fS) (double,double,double,double), 
+                    double (RK_solver::*fI) (double,double,double,double), 
+                    double (RK_solver::*fR) (double,double,double,double)){
 
     n_steps = _n_steps;
     h=(t_n-t_0)/(double) n_steps;
@@ -70,38 +83,81 @@ void RK_solver::solve(double t_0, double t_n, int _n_steps, double (RK_solver::*
     double ti;
     double Si;
     double Ii;
+    double Ri;
 
-    for (int i = 0; i < n_steps -1; i++)
-    {   
+    if(d+dI+e == 0){
+        cout<<"Simplification from 3 to just 2 diff eq possible"<<endl;
+        for (int i = 0; i < n_steps -1; i++)
+        {   
         ti = (double) i * h;
         Si = S(i);
         Ii = I(i);
+        Ri = R(i);
 
+        Sk1=(this->*fS)(Si,Ii,Ri,ti);
+        Ik1=(this->*fI)(Si,Ii,Ri,ti);
+        
 
-        Sk1=(this->*fS)(Si,Ii,ti);
-        Ik1=(this->*fI)(Si,Ii,ti);
+        Sk2=(this->*fS)(Si+h*0.5*Sk1,Ii+h*0.5*Ik2,Ri,ti+h*0.5);
+        Ik2=(this->*fI)(Si+h*0.5*Sk1,Ii+h*0.5*Ik2,Ri,ti+h*0.5);
 
-        Sk2=(this->*fS)(Si+h*0.5*Sk1,Ii+h*0.5*Ik2,ti+h*0.5);
-        Ik2=(this->*fI)(Si+h*0.5*Sk1,Ii+h*0.5*Ik2,ti+h*0.5);
+        Sk3 =(this->*fS)(Si + h*0.5*Sk2,Ii + h*0.5*Ik2,Ri,ti+h*0.5);
+        Ik3 =(this->*fI)(Si + h*0.5*Sk2,Ii + h*0.5*Ik2,Ri,ti+h*0.5);
 
-        Sk3 =(this->*fS)(Si + h*0.5*Sk2,Ii + h*0.5*Ik2,ti+h*0.5);
-        Ik3 =(this->*fI)(Si + h*0.5*Sk2,Ii + h*0.5*Ik2,ti+h*0.5);
-
-        Sk4 =(this->*fS)(Si + h*0.5*Sk3,Ii + h*0.5*Ik3,ti+h*0.5);
-        Ik4 =(this->*fI)(Si + h*0.5*Sk3,Ii + h*0.5*Ik3,ti+h*0.5);
+        Sk4 =(this->*fS)(Si + h*0.5*Sk3,Ii + h*0.5*Ik3,Ri,ti+h*0.5);
+        Ik4 =(this->*fI)(Si + h*0.5*Sk3,Ii + h*0.5*Ik3,Ri,ti+h*0.5);
 
         S(i+1) = Si + (h/6) * (Sk1 +2*Sk2 + 2*Sk3 +Sk4);
         I(i+1) = Ii + (h/6) * (Ik1 +2*Ik2 + 2*Ik3 +Ik4);
+        //R(i+1) = N-S(i+1)-I(i+1);
         R(i+1) = N - S(i+1) - I(i+1);
         t(i+1) = ti + h;
+        N=S(i+1)+R(i+1)+I(i+1);
+        }
     }
+    else
+    {   
+        cout<<"Simplification from 3 to 2 diff eq NOT possible"<<endl;
+        for (int i = 0; i < n_steps -1; i++)
+        {   
+        ti = (double) i * h;
+        Si = S(i);
+        Ii = I(i);
+        Ri = R(i);
+        N=Si+Ii+Ri;
+
+        Sk1=(this->*fS)(Si,Ii,Ri,ti);
+        Ik1=(this->*fI)(Si,Ii,Ri,ti);
+        Rk1=(this->*fR)(Si,Ii,Ri,ti);
+        //N=Sk1+Ik1+Rk1;
+        
+        Sk2=(this->*fS)(Si+h*0.5*Sk1,Ii+h*0.5*Ik2,Ri+h*0.5*Rk1,ti+h*0.5);
+        Ik2=(this->*fI)(Si+h*0.5*Sk1,Ii+h*0.5*Ik2,Ri+h*0.5*Rk1,ti+h*0.5);
+        Rk2=(this->*fR)(Si+h*0.5*Sk1,Ii+h*0.5*Ik2,Ri+h*0.5*Rk1,ti+h*0.5);
+        //N=Sk2+Ik2+Rk2;
+
+        Sk3 =(this->*fS)(Si + h*0.5*Sk2,Ii + h*0.5*Ik2,Ri + h*0.5*Rk2,ti+h*0.5);
+        Ik3 =(this->*fI)(Si + h*0.5*Sk2,Ii + h*0.5*Ik2,Ri + h*0.5*Rk2,ti+h*0.5);
+        Rk3 =(this->*fR)(Si + h*0.5*Sk2,Ii + h*0.5*Ik2,Ri + h*0.5*Rk2,ti+h*0.5);
+        //N=Sk3+Ik3+Rk3;
+
+        Sk4 =(this->*fS)(Si + h*0.5*Sk3,Ii + h*0.5*Ik3,Ri+0.5*h*Rk3,ti+h*0.5);
+        Ik4 =(this->*fI)(Si + h*0.5*Sk3,Ii + h*0.5*Ik3,Ri+0.5*h*Rk3,ti+h*0.5);
+        Rk4 =(this->*fR)(Si + h*0.5*Sk3,Ii + h*0.5*Ik3,Ri+0.5*h*Rk3,ti+h*0.5);
+        //N=Sk4+Ik4+Rk4;
+
+        S(i+1) = Si + (h/6) * (Sk1 +2*Sk2 + 2*Sk3 +Sk4);
+        I(i+1) = Ii + (h/6) * (Ik1 +2*Ik2 + 2*Ik3 +Ik4);
+        R(i+1) = Ri + (h/6) * (Rk1 +2*Rk2 + 2*Rk3 +Rk4);
+
+        t(i+1) = ti + h;
+        }
+        
+    }
+    
+    
 
     cout<<"RK4 final S = "<<S(n_steps-1)<<endl;
     cout<<"RK4 final I = "<<I(n_steps-1)<<endl;
     cout<<"RK4 final R = "<<R(n_steps-1)<<endl;
-
-
-    
-    
-    
 }

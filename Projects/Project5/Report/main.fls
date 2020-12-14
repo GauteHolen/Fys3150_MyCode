@@ -48,6 +48,16 @@ INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/introduction.tex
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Algorithms.tex
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Algorithms.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Analysis.tex
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Analysis.tex
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/figures/default.tex
@@ -61,4 +71,6 @@ INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb

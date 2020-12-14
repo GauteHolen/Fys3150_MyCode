@@ -5,8 +5,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import AnchoredText
 import cycler
-from scipy.ndimage.filters import gaussian_filter1d
-from scipy import signal
+import bottleneck as bn
+
 
 class StatModule:
 
@@ -61,6 +61,9 @@ class StatModule:
         if sum(self.Vacc)>0:
             self.has_vacc=True
 
+        self.max_I = max(self.I)
+        self.max_I_index=self.I.index(self.max_I)
+
         for i in range(len(self.S)):
             self.N.append(self.I[i]+self.R[i]+self.S[i])
             if self.I[i] == 0 and self.has_I_zero==False:
@@ -82,56 +85,68 @@ class StatModule:
     
     def plot_ISR(self):
 
-        n = 4
-        color = plt.cm.Accent(np.linspace(0, n/12,n))
+        n = 8
+        color = plt.cm.Accent(np.linspace(0, n/8,n))
         mpl.rcParams['axes.prop_cycle'] = cycler.cycler('color', color)
-        plt.figure()
-        ax = plt.axes()
+        fig, ax1 = plt.subplots()
+
         #plt.title("Disease development over time")
-        plt.plot(self.t,self.S)
-        plt.plot(self.t,self.I)
-        plt.plot(self.t,self.R)
+        ax1.plot(self.t,self.I)
+        ax1.plot(self.t,self.S)
+        ax1.plot(self.t,self.R)
         mpl.rcParams['axes.prop_cycle'] = cycler.cycler('color', color)
         
-        legend=["Susceptible","Infected","Recovering"]
+        legend=["I","S","R"]
+
+        ax1.axvline(x=self.t[self.max_I_index], ymin=0,ymax=1, color='green', linestyle='dashed')
+        legend.append("I$_{peak}$")
+        
         if self.has_vacc:
+            ax2 = ax1.twinx()
             total_Vacc=[]
             total_Vacc.append(self.Vacc[0])
             for i in range(1,len(self.Vacc)):
                 total_Vacc.append(total_Vacc[i-1]+self.Vacc[i])
-            plt.plot(self.t,total_Vacc[0:len(self.t)])
-            legend.append("Vaccinatations")
+            ax2.plot(self.t,total_Vacc[0:len(self.t)], color=color[4])
+            legend.append("$V_{total}$")
+            ax2.set_ylabel("Vaccinations", color=color[4])
+            ax2.tick_params(axis='y', labelcolor=color[4])
+
         
         if self.has_I_zero:
-            plt.axvline(x=self.t_I_zero, ymin=0,ymax=1, color='grey', linestyle='dashed')
-            legend.append("Infection over")
+            ax1.axvline(x=self.t_I_zero, ymin=0,ymax=1, color='grey', linestyle='dashed')
+            legend.append("I$_{zero}$")
 
-        plt.legend(legend)
-        plt.ylabel("population")
+
+        
+        ax1.set_ylabel("population")
         boxstr = '   '.join(('a = '+str(self.a),('b = '+str(self.b)),('c = '+str(self.c))))
         if(self.algo == "Monte Carlo"):
             plt.title("Disease development Monte Carlo\n"+boxstr)
-            plt.xlabel("time")
+            
         elif(self.algo == "Runge-Kutta"):
             plt.title("Disease development fourth order Runge-Kutta\n"+boxstr)
-            plt.xlabel("time")
-        
+            
+        ax1.set_xlabel("time")
+
         if self.static_N:
             ES=self.b/self.a
             EI=(1-self.b/self.a)/(1+self.b/self.c)
             ER=(self.b/self.c)*(1-self.b/self.a)/(1+self.b/self.c)
-            plt.axhline(y=self.N[0]*ES, color=color[0], linestyle='dashed')
-            plt.axhline(y=self.N[0]*EI, color=color[1], linestyle='dashdot')
-            plt.axhline(y=self.N[0]*ER, color=color[2], linestyle='dotted')
+            ax1.axhline(y=self.N[0]*ES, color=color[1], linestyle='dashed')
+            ax1.axhline(y=self.N[0]*EI, color=color[0], linestyle='dashdot')
+            ax1.axhline(y=self.N[0]*ER, color=color[2], linestyle='dotted')
 
+        fig.legend(legend, loc=(0.74,0.33))
         plt.savefig("./Projects/Project5/Report/plots/"+self.filename+"_SIR.png")
 
 
     def plot_IdI(self):
+
+        #TODO FIX the stupid filter on the birth/death rates
+
         n_steps = len(self.N)
-        window = round(n_steps*100/(50*self.t[n_steps-1]))
-        if window%2==0:
-            window+=1
+        window = round(n_steps/self.t[len(self.t)-1])
 
         
         fig, ax1 = plt.subplots()
@@ -146,24 +161,56 @@ class StatModule:
         for i in range(1,len(self.DI)):
             total_DI.append(total_DI[i-1]+self.DI[i])
 
-        ax1.plot(self.t,self.I, color=color[1])
+        ax2 = ax1.twinx()
+
+        #dI = self.DI; 
+        steps_per_t=n_steps/self.t[len(self.t)-1]
+        if self.algo == "Runge-Kutta":
+            dI = self.DI
+            d = self.D
+            e = self.E
+        else:
+            dI=[self.DI[0]]
+            d=[self.D[0]]
+            e=[self.E[0]]
+            for i in range(1,len(self.DI)):
+                dI.append((self.DI[i]+dI[i-1]))
+                d.append((self.D[i]+d[i-1]))
+                e.append((self.E[i]+e[i-1]))
+            for i in range(1,len(dI)):
+                dI[i]=dI[i]/i
+                d[i]=d[i]/i
+                e[i]=e[i]/i
+        for i in range(len(dI)):
+            dI[i]=dI[i]*steps_per_t
+            d[i]=d[i]*steps_per_t
+            e[i]=e[i]*steps_per_t
+        window=int(steps_per_t/5)
+        dI=bn.move_mean(dI,window,min_count=window)
+        d=bn.move_mean(d,window,min_count=window)
+        e=bn.move_mean(e,window,min_count=window)
+
+        ax2.plot(self.t,dI, color=color[6], linestyle='dotted')
+        ax2.plot(self.t,d, color=color[5], linestyle='dotted')
+        ax2.plot(self.t,e, color=color[4], linestyle='dotted')
+        ax2.tick_params(axis='y', labelcolor=color[6])
+        ax2.set_ylabel("rate", color=color[6])
+
+        ax1.plot(self.t,self.I, color='green')
         ax1.plot(self.t,total_DI, color=color[2])
         ax1.plot(self.t,self.N, color=color[3])
         ax1.tick_params(axis='y', labelcolor=color[1])
-        ax1.set_ylabel("population per time", color=color[1])
-        ax2 = ax1.twinx()
+        ax1.set_ylabel("total", color=color[1])
+        #ax2.set_ylim(0,1)
 
-        dI = signal.savgol_filter(self.DI,window,1)
-        d = signal.savgol_filter(self.D,window,1)
-        e = signal.savgol_filter(self.E,window,1)
+        legend = ["I","$d_{Itotal}$","N","$d_I$","d","e"]
 
-        
+        if self.has_I_zero:
+            plt.axvline(x=self.t_I_zero, ymin=0,ymax=1, color='grey', linestyle='dashed')
+            legend.append("$I_{zero}$")
 
-        ax2.plot(self.t,dI, color=color[6], linestyle='dashed')
-        ax2.plot(self.t,d, color=color[5], linestyle='dashed')
-        ax2.plot(self.t,e, color=color[4], linestyle='dashed')
-        ax2.tick_params(axis='y', labelcolor=color[6])
-        ax2.set_ylabel("avergeg population per time", color=color[6])
+        plt.axvline(x=self.t[self.max_I_index], ymin=0,ymax=1, color='green', linestyle='dashed')
+        legend.append("$I_{peak}$")
 
 
         mpl.rcParams['axes.prop_cycle'] = cycler.cycler('color', color)
@@ -176,7 +223,7 @@ class StatModule:
         ax1.set_xlabel("time")
         plt.title(title)
         fig.tight_layout()
-        fig.legend(["Infected","Total infected deaths","Total population","Infected deaths rate","natural deaths rate","Birth rate"], loc='center')
+        fig.legend(legend, loc=(0.70,0.33))
 
 
         plt.savefig("./Projects/Project5/Report/plots/"+self.filename+"_IdI.png")

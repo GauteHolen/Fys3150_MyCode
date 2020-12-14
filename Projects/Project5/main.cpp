@@ -5,6 +5,11 @@
 
 int main(int argc, char const *argv[]){
 
+    /*====================
+    Input parameters
+    ======================*/
+    
+
     string mode = argv[1];
     string filename = argv[2];
     double a = atof(argv[3]);
@@ -31,14 +36,51 @@ int main(int argc, char const *argv[]){
     double A = atof(argv[17]);
     double f_BULK = atof(argv[18]);
     double bulk_stock = atoi(argv[19]);
+
+    /*------------------------------------------------------------
     
+    /*====================
+    Runge-Kutta solver
+    ======================*/
 
     RK_solver solver;
-    solver.init_constants(a,b,c);
+    solver.init_constants(a,b,c,d,dI,e,f,w,A);
     solver.init_population(N,S_0,I_0,R_0);
-    solver.solve(t_0,t_n,n_steps, &RK_solver::susceptible, &RK_solver::infected);
+
+    if(d+dI+e+f+A==0){
+        //Simple case with only a,b and c
+        cout<<"Runge-Kutta solver with no optional parameters"<<endl;
+        solver.solve(t_0,t_n,n_steps, &RK_solver::susceptible, &RK_solver::infected, &RK_solver::recovering);
+    }
+    else if(d+dI+e>0 && f+A == 0){
+        //Only vital parameters
+        cout<<"Runge-Kutta solver with only option: vital"<<endl;
+        solver.solve(t_0,t_n,n_steps, &RK_solver::vitalS, &RK_solver::vitalI, &RK_solver::vitalR);
+    }
+    else if(f>0 && d+dI+e+A == 0){
+        cout<<"Runge-Kutta solver with only opetion: vaccination"<<endl;
+        solver.solve(t_0,t_n,n_steps, &RK_solver::vaccineS, &RK_solver::vaccineI, &RK_solver::vaccineR);
+
+    }
+    else if(A>0 && d+dI+e+f == 0){
+        cout<<"Runge-Kutta solver with only seasonal variations"<<endl;
+        solver.solve(t_0,t_n,n_steps, &RK_solver::seasonalS, &RK_solver::seasonalI, &RK_solver::seasonalR);
+    }
+    else{
+        //Cover all parameters
+        cout<<"Runge-Kutta solver more than one optional parameter group"<<endl;
+        solver.solve(t_0,t_n,n_steps, &RK_solver::allS, &RK_solver::allI, &RK_solver::allR);
+    }
+    
     solver.expected_values();
     solver.write_to_file(filename);
+
+
+    /*------------------------------------------------------------
+
+    /*====================
+    Monte Carlo solver
+    ======================*/
 
     MC_solver mc_solver;
     mc_solver.init_constants(a,b,c,d,dI,e,f,w,A);

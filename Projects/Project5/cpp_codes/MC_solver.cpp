@@ -69,6 +69,14 @@ void MC_solver::run(double t_0, double t_n, string _mode){
     dt = min(dt,1.0/(c*(double) N));
     //dt = min(dt, 1.0/(f_BULK*(double) N));
     P_BULK = f_BULK*dt;
+    //Set static transition probabilities
+    P_StoR = f*dt;
+    P_ItoR = b*dt;
+    P_RtoS = c*dt;
+    P_d = d*dt;
+    P_dI = dI*dt;
+    P_e = e*dt;
+
     n_steps = (int) (t_n-t_0)/dt;
 
     S = arma::vec(n_steps);
@@ -107,9 +115,15 @@ void MC_solver::run(double t_0, double t_n, string _mode){
     //State counter {susceptible, infected, resistant, born, dead (natural), dead (disease), vaccines}
     state_counter = {(double) S_0, (double) I_0, (double) R_0, 0.0, 0.0, 0.0, 0.0};
 
+    
+
     for (int i = 0; i < n_steps-1; i++)
     {   
-        //state_counter = arma::vec3(arma::fill::zeros);
+        //Resets state_counter
+        state_counter(3) = 0;
+        state_counter(4) = 0;
+        state_counter(5) = 0;
+        state_counter(6) = 0;
 
         Si = S(i);
         Ii = I(i);
@@ -117,21 +131,14 @@ void MC_solver::run(double t_0, double t_n, string _mode){
         ti = t(i);
 
         //Maybe use indeces here and select pointers to functions before runtime for different modes
-        P_StoI = a*Ii*dt/((double) N) + A*cos(w*ti);
-        P_StoR = f*dt;
-        P_ItoR = b*dt;//*Ii*dt;
-        P_RtoS = c*dt;//*Ri*dt;
 
-        //Resets state_counter
-        state_counter(3) = 0;
-        state_counter(4) = 0;
-        state_counter(5) = 0;
-        state_counter(6) = 0;
+        //Set dynamic transition probabilities
+        P_StoI = a*Ii*dt/((double) N) + A*cos(w*ti);
 
         for (int j = 0; j < N; j++)
         {
             //Death/Birth rates
-            if(unif(rng)<e){
+            if(unif(rng)<P_e){
                 Person person(0);
                 population.push_back(person);
                 state_counter(0)+=1;
@@ -141,14 +148,14 @@ void MC_solver::run(double t_0, double t_n, string _mode){
 
             //If dead, remove, else proceed as normal
             old_state=population[j].get_state();
-            if (unif(rng)<d)
+            if (unif(rng)<P_d)
             {   
                 state_counter(old_state)-=1;
                 population.erase(population.begin() + j);
                 state_counter(4)+=1;
                 N-=1;
             }
-            else if(old_state==1 && unif(rng)<dI){
+            else if(old_state==1 && unif(rng)<P_dI){
                 state_counter(old_state)-=1;
                 population.erase(population.begin() + j);
                 state_counter(5)+=1;

@@ -65,6 +65,9 @@ class MC_solver{
         double P_RtoS;
         double P_StoR;
         double P_BULK;
+        double P_d;
+        double P_dI;
+        double P_e;
 
         //Transition functions
         int StoI();

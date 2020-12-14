@@ -1,1 +1,21 @@
 \section{Algorithms, implementation and testing}
+As this project is new this year (as far as I know), some trial and error, as well as some creative freedom to change equations for more realistic implementation was taken.
+
+
+
+\subsection{Runge-Kutta model}
+
+
+When the population is stable, such that $N$ is constant, we have that
+\begin{equation}
+    N=I+R+S
+\end{equation}
+Which can be simplified such that
+$$
+R=N-R-S
+$$
+So that $R$ is plugged into the equation for $S$, and we only need 2 equations. 
+However, as is the case with the vital parameters where N is changing, we now have to update N and R, which depend on each other, 
+which is no longer possible. This version of the RK-model turns out to be signifficantly slowe, as both N and R now needs to be calculated for every step.
+
+\subsection{Monte Carlo method}

@@ -17,11 +17,37 @@ class RK_solver {
         //typedef double dtfunc(double S, double I, double t);
 
         RK_solver();
-        void solve(double t_0, double t_n, int _n_steps, double (RK_solver::*fS) (double,double,double), double (RK_solver::*fI) (double,double,double));
-        void init_constants(double _a, double _b, double _c);
+        void solve(double t_0, double t_n, int _n_steps, 
+            double (RK_solver::*fS) (double,double,double,double), 
+            double (RK_solver::*fI) (double,double,double,double), 
+            double (RK_solver::*fR) (double,double,double,double));
+
+        void init_constants(double _a, double _b, double _c, double _d, double _dI, double _e, double _f, double _w, double _A);
         void init_population(int _N, int _S, int _I, int _R);
-        double susceptible(double S, double I, double t);
-        double infected(double S, double I, double t);
+
+
+        double susceptible(double S, double I, double R, double t);
+        double infected(double S, double I, double R, double t);
+        double recovering(double S, double I, double R, double t);
+        //Vital
+        double vitalS(double S, double I, double R, double t);
+        double vitalI(double S, double I, double R, double t);
+        double vitalR(double S, double I, double R, double t);
+        //Vaccine
+        double vaccineS(double S, double I, double R, double t);
+        double vaccineI(double S, double I, double R, double t);
+        double vaccineR(double S, double I, double R, double t);
+        //Seasonal
+        double seasonalS(double S, double I, double R, double t);
+        double seasonalI(double S, double I, double R, double t);
+        double seasonalR(double S, double I, double R, double t);
+
+        //Include all cases
+        double allS(double S, double I, double R, double t);
+        double allI(double S, double I, double R, double t);
+        double allR(double S, double I, double R, double t);
+        
+
         void write_to_file(string filename);
         void expected_values();
 
@@ -34,7 +60,13 @@ class RK_solver {
         double a;
         double b;
         double c;
-        int N;
+        double d;
+        double dI;
+        double e;
+        double f;
+        double w;
+        double A;
+        double N;
 
         int n_steps;
         double h;
@@ -62,6 +94,11 @@ class RK_solver {
         double Ik2;
         double Ik3;
         double Ik4;
+        double Rk1;
+        double Rk2;
+        double Rk3;
+        double Rk4;
+
         
 };
 
