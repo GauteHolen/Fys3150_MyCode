@@ -80,42 +80,49 @@ def plot_SIR(filename,a,b,c,N,nfig,scenario):
     plt.savefig("./Projects/Project5/Report/plots/"+filename+".png")
     
 
-def plot_std(filename):
+def plot_std(filename, columnname, label, xlabel, ylabel, title, outfile, t_start=None):
     path = "Projects/Project5/results/"+filename+".txt"
     df = pd.read_csv(path,sep='\t')
     
-    peak=df['Peak[t]'].values.tolist()
-    peak = [x for x in peak if str(x) != 'nan']
-    over=df['I_over[t]'].values.tolist()
-    over = [x for x in over if str(x) != 'nan']
+    data=df[columnname].values.tolist()
+    data = [x for x in data if str(x) != 'nan']
 
-    dataset = [over, peak]
-    labels = ["Infection over", "Infection peak"]
-    outfiles = ["I_over","I_peak"]
+    textstr = ''
 
-    for i in range(len(dataset)):
-        data=dataset[i]
-        label=labels[i]
-        outfile=outfiles[i]
-        fig1, ax1 = plt.subplots()
-        ax1.hist(data, density=True, bins=30, label=label)
-        mean = np.mean(data)
-        ax1.axvline(mean, color='black', linestyle = 'dashed', label='mean')
-        std = np.std(data)
-        ax1.axvline(mean+std, color='black', linestyle = 'dotted', label='1 std')
-        ax1.axvline(mean-std, color='black', linestyle = 'dotted')
-        plt.legend(loc='upper left')
-        ax1.set_xlabel("time")
-        ax1.set_ylabel("Frequency")
+    if t_start!=None:
+        t = df['t'].values.tolist()
+        N=len(data)
+        index_start = 0
+        for i in range(N):
+            if t[i] > t_start:
+                index_start = i
+                break
+        data=data[index_start:N-1]
+        textstr+='$t_0$='+str(t_start)+'\n'
+        textstr+='MC cycles='+str(N-index_start)+'\n'
+        outfile+='_mcs_'+str(N-index_start)
 
-        textstr = '\n'.join((
-        r'$\mu=%.2f$' % (mean, ),
-        r'$\sigma=%.2f$' % (std, )))
-        # these are matplotlib.patch.Patch properties
-        props = dict(boxstyle='round', facecolor='white', alpha=0.5)
 
-        # place a text box in upper left in axes coords
-        ax1.text(0.8, 0.95, textstr, transform=ax1.transAxes, fontsize=11,
-                verticalalignment='top', bbox=props)
-        
-        plt.savefig("./Projects/Project5/Report/plots/"+filename+outfile+".png")
+    fig1, ax1 = plt.subplots()
+    ax1.hist(data, density=True, bins=30, label=label)
+    mean = np.mean(data)
+    ax1.axvline(mean, color='black', linestyle = 'dashed', label='mean')
+    std = np.std(data)
+    ax1.axvline(mean+std, color='black', linestyle = 'dotted', label='1 std')
+    ax1.axvline(mean-std, color='black', linestyle = 'dotted')
+    plt.legend(loc='upper left')
+    ax1.set_xlabel(xlabel)
+    ax1.set_ylabel(ylabel)
+
+    textstr += '\n'.join((
+    r'$\mu=%.2f$' % (mean, ),
+    r'$\sigma=%.2f$' % (std, )))
+    # these are matplotlib.patch.Patch properties
+    props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+
+    # place a text box in upper left in axes coords
+    ax1.text(0.65, 0.95, textstr, transform=ax1.transAxes, fontsize=11,
+            verticalalignment='top', bbox=props)
+    plt.title(title)
+    
+    plt.savefig("./Projects/Project5/Report/plots/"+filename+outfile+".png")

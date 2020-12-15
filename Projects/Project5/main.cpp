@@ -24,10 +24,6 @@ int main(int argc, char const *argv[]){
     double n_steps = atof(argv[11]);
     double N = S_0 + R_0 + I_0;
 
-    cout<<"a = "<<a<<endl;
-    cout<<"b = "<<b<<endl;
-    cout<<"c = "<<c<<endl;
-
     double d = atof(argv[12]);
     double dI = atof(argv[13]);
     double e = atof(argv[14]);
@@ -44,13 +40,16 @@ int main(int argc, char const *argv[]){
     Runge-Kutta solver
     ======================*/
 
+    cout<<"Starting Runge-Kutta solver..."<<endl;    
+
     RK_solver solver;
     solver.init_constants(a,b,c,d,dI,e,f,w,A);
     solver.init_population(N,S_0,I_0,R_0);
-
+    
     if(d+dI+e+f+A==0){
         //Simple case with only a,b and c
         cout<<"Runge-Kutta solver with no optional parameters"<<endl;
+        solver.expected_values();
         solver.solve(t_0,t_n,n_steps, &RK_solver::susceptible, &RK_solver::infected, &RK_solver::recovering);
     }
     else if(d+dI+e>0 && f+A == 0){
@@ -73,9 +72,10 @@ int main(int argc, char const *argv[]){
         solver.solve(t_0,t_n,n_steps, &RK_solver::allS, &RK_solver::allI, &RK_solver::allR);
     }
     
-    solver.expected_values();
+    solver.print_runtime();
     solver.write_to_file(filename);
 
+    cout<<"Runge-Kutta solver DONE"<<endl;    
 
     /*------------------------------------------------------------
 
@@ -83,7 +83,7 @@ int main(int argc, char const *argv[]){
     Monte Carlo solver
     ======================*/
 
-
+    cout<<"Starting Monte-Carlo solver..."<<endl;    
     if(mode=="multiple"){
         int n_runs = atoi(argv[20]);
         MC_solver mc_multiple;
@@ -113,8 +113,9 @@ int main(int argc, char const *argv[]){
         }
         mc_solver.run(t_0,t_n,mode,1);
         mc_solver.write_to_file(filename);   
+        mc_solver.print_runtime();
     }
-    
+    cout<<"Monte-Carlo solver DONE"<<endl;    
     
 
 }

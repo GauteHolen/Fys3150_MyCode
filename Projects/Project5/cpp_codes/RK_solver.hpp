@@ -53,6 +53,7 @@ class RK_solver {
 
         void write_to_file(string filename);
         void expected_values();
+        void print_runtime();
 
         //For testing purposes
         double get_last_I();
@@ -103,6 +104,7 @@ class RK_solver {
         double Rk2;
         double Rk3;
         double Rk4;
+        double runtime;
 
         
 };

@@ -26,6 +26,7 @@ RK_solver::RK_solver(){
 *   @param filename the name of the output file
 */
 void RK_solver::write_to_file(string filename){
+    cout<<"Writing results to file: "<<"./Projects/Project5/results/RK_solver_"+filename+".txt"<<endl;
     ofile.open("./Projects/Project5/results/RK_solver_"+filename+".txt");
     ofile<<"S\tI\tR\te\td\tdI\tf\tt"<<endl;
     for (int i = 0; i < n_steps; i++)
@@ -43,6 +44,10 @@ void RK_solver::write_to_file(string filename){
         "\t"<<di<<"\t"<<dIi<<"\t"<<fi<<"\t"<<t(i)<<endl;
     }
     ofile.close();
+}
+
+void RK_solver::print_runtime(){
+    cout<<"RK solver runtime = "<<runtime<<endl;
 }
 
 /**
@@ -137,6 +142,8 @@ void RK_solver::solve(double t_0, double t_n, int _n_steps,
     double Ii;
     double Ri;
 
+    double start = omp_get_wtime();
+
     if(d+dI+e == 0){
         cout<<"Simplification from 3 to just 2 diff eq possible"<<endl;
         for (int i = 0; i < n_steps -1; i++)
@@ -204,7 +211,8 @@ void RK_solver::solve(double t_0, double t_n, int _n_steps,
 
         t(i+1) = ti + h;
         }
-        
+        double end = omp_get_wtime();
+        runtime = end-start;
     }
     
     

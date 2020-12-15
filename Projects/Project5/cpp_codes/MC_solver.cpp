@@ -44,6 +44,10 @@ void MC_solver::init_bulkvacc(double _f_BULK, int _bulk_stock){
     vaccine_stock = _bulk_stock;
 }
 
+void MC_solver::print_runtime(){
+    cout<<"MC solver runtime = "<<runtime<<endl;
+}
+
 /**
 *   @brief Writes S, I, R, e, d, dI, f and t to a file
 *
@@ -53,6 +57,8 @@ void MC_solver::write_to_file(string filename){
     cout<<"MC final S = "<<S(n_steps-1)<<endl;
     cout<<"MC final I = "<<I(n_steps-1)<<endl;
     cout<<"MC final R = "<<R(n_steps-1)<<endl;
+
+    cout<<"Writing results to file: "<<"./Projects/Project5/results/MC_solver_"+filename+".txt"<<endl;
 
     ofile.open("./Projects/Project5/results/MC_solver_"+filename+".txt");
     ofile<<"S\tI\tR\te\td\tdI\tf\tt"<<endl;
@@ -266,6 +272,7 @@ void MC_solver::write_multiple_runs(string filename){
  * @param filename output file name
  */
 double MC_solver::init_multiple_runs(string filename){
+    cout<<"Writing results to file: "<<"./Projects/Project5/results/MC_solver_"+filename+".txt"<<endl;
     ofile.open("./Projects/Project5/results/MC_solver_"+filename+".txt");
     ofile<<"Peak[t]\tI_over[t]\tsingle_runtime\ttoal_runtime"<<endl;
     ofile.close();

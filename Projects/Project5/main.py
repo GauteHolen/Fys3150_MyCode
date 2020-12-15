@@ -7,17 +7,17 @@ import matplotlib.pyplot as plt
 from stats import StatModule
 
 
-do_tests = True
-do_compile = False
-do_execute = False
-do_plots = False
+do_tests = False
+do_compile = True
+do_execute = True
+do_plots = True
 
 #TODO f independent of S in RK and MC? fixed vaccine rate independent of population?
 
-mode = "multiple"
+mode = "getstd"
 
 a = 4
-b = 4
+b = 1
 c = 0.5
 
 S_0 = 300
@@ -26,16 +26,16 @@ R_0 = 0
 N=S_0+I_0+R_0
 
 t_0 = 0
-t_n = 5
+t_n = 10
 n_steps = 5000
 
-e = 0.011
-d = 0.01
-dI = 0.01
+e = 0.0#11
+d = 0.0#1
+dI = 0.0#1
 
-f = 2
+f = 0#2
 w = 2*math.pi
-A = 4
+A = 0#4
 
 f_BULK = 0 
 vaccine_stock = 0
@@ -82,6 +82,7 @@ if do_execute:
 
 
 if do_plots:
+    print("Creating plots...")
     if mode!="multiple":
         plotstatsMC = StatModule(a,b,c,d,dI,e,f,w,A)
         plotstatsMC.read_data("MC_solver_"+filename)
@@ -101,8 +102,12 @@ if do_plots:
         plt.title("RK (dashed) and MC (line) disease development")
         plt.savefig("./Projects/Project5/Report/plots/Compare_"+filename+".png")
 
+        plot.plot_std("MC_solver_"+filename,'I','Infected people','time','frequency','Infection statistics after steady state','I_SS',t_start=4)
+
     else:
-        plot.plot_std("MC_solver_"+filename)
+        plot.plot_std("MC_solver_"+filename,'Peak[t]','Infection peak','time','frequency','Infection peak statstics','Peak_I')
+        plot.plot_std("MC_solver_"+filename,'I_over[t]','Infection over','time','frequency','Infection over statistics','over_I')
+    print("Plotting DONE")
 
     #plot.plot_SIR("RK_solver_"+filename,a,b,c,N,1,"simple")
 

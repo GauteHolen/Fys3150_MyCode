@@ -23,6 +23,7 @@ class MC_solver{
         double init_multiple_runs(string filename);
         void write_multiple_runs(string filename);
         void multiple_run_time(string filename, double multiple_start_time);
+        void print_runtime();
 
         //Used for testing
         std::vector<Person> get_population();
