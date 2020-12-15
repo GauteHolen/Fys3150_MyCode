@@ -281,3 +281,7 @@ void MC_solver::multiple_run_time(string filename, double multiple_start_time){
     ofile<<"\t\t\t"<<multiple_run_time<<endl;
     ofile.close();
 }
+
+std::vector<Person> MC_solver::get_population(){
+    return population;
+}

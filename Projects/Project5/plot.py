@@ -106,7 +106,7 @@ def plot_std(filename):
         ax1.axvline(mean-std, color='black', linestyle = 'dotted')
         plt.legend(loc='upper left')
         ax1.set_xlabel("time")
-        ax1.set_ylabel("Occurance")
+        ax1.set_ylabel("Frequency")
 
         textstr = '\n'.join((
         r'$\mu=%.2f$' % (mean, ),

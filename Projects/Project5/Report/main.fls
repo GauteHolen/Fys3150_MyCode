@@ -58,6 +58,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/testing_runtimes.tex
+INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/testing_runtimes.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Analysis.tex
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Analysis.tex
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/figures/default.tex
@@ -66,9 +69,9 @@ INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/RK_
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/RK_solver_default_a_4_b_1_c_0.5.png
 OUTPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.pdf
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/RK_solver_default_a_4_b_1_c_0.5.png
-INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Duscussion.tex
-INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Duscussion.tex
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Duscussion.tex
+INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Duscussion.tex
 INPUT /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb

@@ -213,3 +213,8 @@ void RK_solver::solve(double t_0, double t_n, int _n_steps,
     cout<<"RK4 final I = "<<I(n_steps-1)<<endl;
     cout<<"RK4 final R = "<<R(n_steps-1)<<endl;
 }
+
+
+double RK_solver::get_last_I(){
+    return I(n_steps-1);
+}

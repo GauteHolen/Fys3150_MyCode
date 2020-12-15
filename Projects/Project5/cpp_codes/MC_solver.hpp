@@ -24,6 +24,9 @@ class MC_solver{
         void write_multiple_runs(string filename);
         void multiple_run_time(string filename, double multiple_start_time);
 
+        //Used for testing
+        std::vector<Person> get_population();
+
 
     private:
         string mode;

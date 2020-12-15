@@ -54,6 +54,8 @@ class RK_solver {
         void write_to_file(string filename);
         void expected_values();
 
+        //For testing purposes
+        double get_last_I();
 
 
     private:
