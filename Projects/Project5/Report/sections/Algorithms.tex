@@ -1,4 +1,4 @@
-\section{Algorithms, implementation and testing}
+\section{Algorithms, implementation, testing and methodology}
 As this project is new this year (as far as I know), some trial and error, as well as some creative freedom to change equations for more realistic implementation was taken.
 
 
@@ -55,7 +55,7 @@ and so forth until finally
 $$
 S_{i+1}=S_i+\frac{1}{6}(Sk_1+2Sk_2+2Sk_3+Sk_4)
 $$
-This will be the same for $I$ and $R$.
+This will be the same for $I$ and $R$ \footnote{The implementation was assisted and inspired by this \href{https://blog.tonytsai.name/blog/2014-11-24-rk4-method-for-solving-sir-model/}{blog}} %\cite{RK4Online}}
 
 To apply different models for $S$, $I$ and $R$, the algorithm just changes the function for f.
 Before every run, a pointer to which member function to use for $S$, $I$ and $R$ is assigned. 
@@ -79,7 +79,7 @@ For each timestep, or Monte Carlo cycle, each person in the population has a tra
 \begin{table}[!h]
     \centering
     \begin{tabular}{lll}
-    Transition   & Value          & Note                       \\
+    Transition   & Transition Probability          & Note                       \\
     S to I       & $a\frac{I_{total}}{N}\Delta t$ & Getting infected           \\
     S to R       & $f \Delta t$           & Getting vaccine            \\
     I to R       & $b \Delta t$           & Recovering                 \\
@@ -99,7 +99,26 @@ $$
 Ensuring approximately one transition per timestep. 
 If there are too many transitions per timestep, then the dynamic transition probability such as S to I won't have time to adjust between transitions, so that $I_{total}$ and $N$ aren't the corrent values.
 
+One thing to note, is that this specific implementation, using the transition probabilites in \textit{Table} \ref{tab:transitions}, runs through every single member of the population, and the majority of the transitions are not depending on macroscopic values.
+Perhaps there are ways to implement a more macroscopic MC method, which would do less evaluations and if-statements, speeding up the simulation significantly, however this is not done here.
+The intent is to make each member of the population as independent of the others as possible, and have the ability to update $N$ and $I$ between each persons move, so if one person gives birth, then the immidiate evaluation takes $N=N+1$ into account, rather than just updating these things once per cycle.
+There is possibly lost some performance to this, however on the spectrum of "very MC" to "MC like", this implementation remains "very MC", which was the intent.
 
-
+\subsection{Visual methods}
+To make any sense of the data produced by the algorithms, three major plotting methods are implemented:
+\begin{enumerate}
+    \item $SIR$ plot, showing the $S$, $I$, $R$ and the total number of vaccines given as a function of time for the Monte Carlo simulation (full line) and the Runge-Kutta solver (dashed line).
+            it also has horizontal dashed lines indicating the expected values when $N$ is constant (where the expected values are accurate).
+            There are vertical lines (full line MC, dashed line Rk) showing infection peaks, and when the infection is over, which is defined as less than one person having the infection.
+    \item $Id_I$ plot, shwoing the number of infected people, the population $N$, and the total number of deaths due to the disease on the left y-axis as a function of time. 
+            On the right y-axis, it shows the running mean rates as dotted lines for $e$, $d$ and $d_I$. This has to be a running mean, as for the MC simulation, the deaths and births only happens once per timestep,
+             so the plot would just be a bunch of discrete spikes going between 0 and 1 at different frequencies. By applying a quite heavy running mean filter, a smooth curve is prodcued, however this curve is shifted in time.
+            The time shift is not constant, and to avoid assuming misrepresenting the curve as perfectly asjusted to account for timeshift, this artifact is left there to give some indication as to how heavy the plot is processed.
+            In addition, as in the $SIR$ plot, there are vertical lines indicating infection peak and when there are less than one person infected.
+    \item $\mu \sigma$ plot, showing the standard deviation, mean and distribution of input data. 
+            This is used wither to find mean $\mu$ and $\sigma$ after the steady state is reached (green), or
+             to find the range for infection peaks and infected people being less than 1 for consecutive runs of the MC simulation (blue).
+             This method aims to show how much variation in the outcomes there is for the MC simulation.
+\end{enumerate}
 
 \input{sections/testing_runtimes.tex}

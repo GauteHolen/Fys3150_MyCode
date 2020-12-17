@@ -1,7 +1,7 @@
 # Project 5: Disease modelling 
 In this project, disease development in a population is modelled with a fourth order Runge-Kutta method and a Monte-Carlo simulation.
 
-Please see the report.pdf for more details.
+Please see the Report/Report.pdf for more details.
 
 ## How to run
 The program is developed on Ubuntu 18.04.5 LTS in VS CODE.

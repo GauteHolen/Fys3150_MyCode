@@ -1,0 +1,28 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{The SIRS model}{}% 2
+\BOOKMARK [1][-]{section.3}{Algorithms, implementation, testing and methodology}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Runge-Kutta model}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Monte Carlo method}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Visual methods}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Tests}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Testing the RK solver with expected values}{subsection.3.4}% 8
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Testing the population manager in the MC solver}{subsection.3.4}% 9
+\BOOKMARK [2][-]{subsection.3.5}{Optimizations and runtimes}{section.3}% 10
+\BOOKMARK [3][-]{subsubsection.3.5.1}{2 vs 3 equations in RK solver}{subsection.3.5}% 11
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Using array of functions to avoid if-statements in MC solver}{subsection.3.5}% 12
+\BOOKMARK [3][-]{subsubsection.3.5.3}{Compiler flag optimizations}{subsection.3.5}% 13
+\BOOKMARK [1][-]{section.4}{results}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{Error and accuracy}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{Changing b}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.3}{Vital Parameters}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.4}{Seasonal Variation}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.5}{Vaccines}{section.4}% 19
+\BOOKMARK [1][-]{section.5}{Discussion and Analysis}{}% 20
+\BOOKMARK [2][-]{subsection.5.1}{Accuracy of models}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.2}{Insight into disease modeling}{section.5}% 22
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Steady state with infection in populaiton}{subsection.5.2}% 23
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Vital parameters effect on extinction of disease}{subsection.5.2}% 24
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Seasonal parameters effect on pandemic duration and peak}{subsection.5.2}% 25
+\BOOKMARK [3][-]{subsubsection.5.2.4}{The effects and timing of vaccination}{subsection.5.2}% 26
+\BOOKMARK [2][-]{subsection.5.3}{MC vs RK, strengths and weaknesses}{section.5}% 27
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 28

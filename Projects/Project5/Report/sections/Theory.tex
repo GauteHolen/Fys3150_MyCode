@@ -1,0 +1,63 @@
+\section{The SIRS model}
+In short, the SIRS model is a model on an isolated population $N$, where each member of the population and be any of the three states:
+\begin{enumerate}
+    \item $S$ Susceptible to the disease
+    \item $I$ Infected with the disease
+    \item $R$ Recovering from the disease with some temporary immunity
+\end{enumerate}
+The relationship between the different states are described by the following coupled differential equations
+\begin{eqnarray}
+    S' =c R-\frac{a S I}{N} \\
+    I' =\frac{a S I}{N}-b I \\
+    R' =b I-c R
+\end{eqnarray}
+Where $a$ is the infection rate, $b$ is the recovery rate and $c$ is the loss of immunity rate.
+If N not time dependent,
+$$
+R = N - S - I
+$$
+So that
+$$
+S^{\prime} =c(N-S-I)-\frac{a S I}{N}
+$$
+$$
+I^{\prime} =\frac{a S I}{N}-b I
+$$
+Otherwise
+$$
+N = I + R + S
+$$
+Needing $I$, $R$ and $S$ to calculate $N$, so then we need 3 coupled equations as $S$ depend on $N$, and $N$ depends on $S$ when N is time dependent.
+By introducing birthrate $e$, natural deathrate $d$ and deathrate due to disease $d_I$, and assuming all newborns are susceptible and that everyone can randomly die from natural causes, we obtain
+\begin{eqnarray}
+    S' =c R-\frac{a S I}{N} + eN -dS\\
+    I' =\frac{a S I}{N}-b I -dI -d_I I\\
+    R' =b I-c R -d R
+\end{eqnarray}
+Seasonal variations are introduced by modyfying the infection rate $a'$ (also referred to later as $a_{seasonal}$), such that
+\begin{equation}
+    a'=a+Acos(\omega t)
+\end{equation}
+Vaccinations are introduced with a vaccination rate $f$, causing a direct transition from $S$ to $R$, such that 
+\begin{eqnarray}
+    S^{\prime} &=c R-\frac{a S I}{N}-f \\
+    I^{\prime} &=\frac{a S I}{N}-b I \\
+    R^{\prime} &=b I-c R+f
+\end{eqnarray}
+
+
+Transitions between each state, are described by transiton probabilites
+\begin{eqnarray}
+        P (S \rightarrow I) \\
+        P (I \rightarrow R) \\
+        P (R \rightarrow I) 
+\end{eqnarray}
+Which may depend on which paramaters one might want to implement in a model.
+The specific implementations will also vary depending on what method is used for solving or simulating the system.
+
+If only $a$, $b$ and $c$ are considered, the expected values for the steady state of the system is given as, which is used to verify the simplest runs of the model
+\begin{eqnarray}
+    s^{*} &=\frac{b}{a} \\
+    i^{*} &=\frac{1-\frac{b}{a}}{1+\frac{b}{c}} \\
+    r^{*} &=\frac{b}{c} \frac{1-\frac{b}{a}}{1+\frac{b}{c}}
+\end{eqnarray}

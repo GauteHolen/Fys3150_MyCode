@@ -1,0 +1,85 @@
+\section{Discussion and Analysis}
+One thing to note, is that the data shortly after the infection dies out is cut for the MC solver and RK solver. 
+This is because shortly fter the infection dies, the whole poulation becomes susceptible with no odds of getting infected.
+In the RK solver however, infections never reach exactly zero, they only converge to the expected values, which makes this type of determinaiton less viable for the RK solver.
+The RK solver may dip very close to zero infections, and then rise back up to some higher value. 
+But, since the MC solver is discrete it infections, when 1 turns to 0, nothing more can happen.
+Thus, if the MC data seem to cutoff early, it is only because nothing of interest happens after that point.
+
+Another thing to note is that there are 15 inputs parameters that can affect the result of the model. 
+So, it is absolutely not in the scope of this report to thoroughly check how every combination works.
+There are probably combinations that should've or could've been tried, but to keep the report brief and concise, only some combinations and variations of each input parameter group is explored.
+The main aim of this project is to develop two models for disease, and check that it can handle different inputs and gain some insight from it, not to map every single combination of inputs possible.
+
+\subsection{Accuracy of models}
+Before looking at any results, it is worth considering the error, and standard deviation in the results we see in the RK and MC solver.
+The RK solve has error $O(h^5)$, whcich isn't really interesting to investigate further.
+The MC solver however, does not have a pre-defined theoretical error, and as a result must be evaluated statistically.
+
+However, we see that the time of the infection peak, as well as the time of the infection being over, has $\sigma$ within the same order of magnitude as the mean.
+This means that although the MC solver roughly does what you'd expect, there's a lot of random variety within each set of initial conditions.
+
+After reaching the steady state unequal to zero, statistics are also collected for the amount of infected people, and again we see significant variation. 
+However, compared to infection peak and infection over as discussed above, the $\sigma$ value is roughly one order of magnitude lower than the mean with the steady state statistics. 
+
+
+In general, the MC solver has a lot of variety, yet it seems to do what it should within an order of magnitude of time. 
+The variation after reaching the steady state seems be much lower, while still having quite a bit of random variation.
+Although this might seem like a weakness, it also gives an indication as to how small random cases of infection can have a butterfly effect and severly affect when the peak is, how high it is and how long the disease stays in the population.
+The RK solver gives an exact solution for this, but doesn't really have any way to extract data on the variety of outcomes given one set of initial conditions.
+As disease spread is a random process, the ability to compare $\sigma$ values to determine the scope, or domain, of possible outcomes, can be at least as valuable as an exact solution.
+
+
+\subsection{Insight into disease modeling}
+
+\subsubsection{Steady state with infection in populaiton}
+
+From the equations for expected values, we need $b<a$ in order for an infection to reach a steady state within a population.
+
+However, due to the randomness in the MC solver, as discussed above, in \textit{Figure} \ref{fig:b} (c) infection actually dies out in the run with $b=3$, due to the expected amount of infected people only being 14 at the steady state.
+With a much larger population, this is expected to be less likely to happen. For $b=4$, the infection dies out as expected both for the MC and RK solver.
+The interesting takeaway is that the MC solver can produce outcomes where the disease dies out when it has a dip which is expected to increase again later, something the RK solver can't do.
+
+\subsubsection{Vital parameters effect on extinction of disease}
+For the vital parameters, the RK solver plots were left out, as they converged to zero if
+$$
+e-(d+\frac{d_I I}{N})<1
+$$
+and diverged otherwise.In other words, the vital parameters only acted the same as \textit{Figure} \ref{fig:b} multiplied with a convergent/divergent constant with very predictable behaviour.
+For this reason, only the MC runs are discussed here, as they produced more interesting results.
+
+The main thing to look for with the death rates, is whether the previously stable cases with $b=1$ and $b=2$ will become unstable and converge to zero infections if enough infected people die.
+When the carriers of the disease die, less people are infecting others, causing the disease to be less infectious, making the $b<a$ criteria for infections to stay in a population no valid, as a is in practce lowered by infected people dying before infecting others.
+
+By starting the simulation earlier, the impact of the disease death rate, while keeping it reasonably low, $d_I$ does not self handicap to the extent where it prevents the disease from even existing.
+Obviously, if the deathrate is unreasonably much higher than the infection rate, then the first few people getting the disease would just die before it could spread. 
+As a result, the deathrate's effect is not explored for unreasonable extremes. 
+That being said, the infection peak, and total amount of deaths was not really affected by increasing values of $d_I$ in \textit{Figure} \ref{fig:vitalb2}. The only thing that was affected, was the time scale where the deaths occured, which decreaed with increading $d_I$.
+\subsubsection{Seasonal parameters effect on pandemic duration and peak}
+
+With seasonal variations, the average value of $a$ over a period $\omega k$, $k \in \mathbf{N} ^+$ remains unchanged, so does this mean that the amount of infected people also remain the same?
+According to \textit{Figure} \ref{fig:seasonalb2} and \textit{Figure} \ref{fig:seasonalb1}, $I$ cycles about the expected values both for MC and RK.
+Something that was shown to be impacted with severe seasonal variations, is that the infection peak time could be delayed one cycle in certain cases. 
+This could have significant impact as one might think a pandemic has passed its peak as infections are going down, before it changes and has another even higher peak.
+
+The $\sigma$ values were higher for steady states, and in general the seasonal variability adds unpredictability to the model, increasing the domain of outcomes and variations.
+\subsubsection{The effects and timing of vaccination}
+As for vaccines, they have the most severe impact on reducing infections and deaths. 
+An early vaccination seems to almost completely negate the infections, and cause the disease to almost disappear.
+If there was ever any doubt that vaccines work, this is another indcation that they indeed do work very well.
+
+\subsection{MC vs RK, strengths and weaknesses}
+Now, that the results have been discussed, and benchmarks and runtimes have been asessed, one can make a comparison between the MC and RK methods. 
+When simulating a random system, such as disease development, which can have a great variety of outcoms for the same initial conditions, the MC solver, particularly with the statistcal methods with $\sigma$ values, is preferred over the RK solver which produces the same answer every time.
+That being said, the RK solver is significantly faster, and if the population were to be increased, then the MC solver would be much slower.
+As a result, if there are some specific population size that is hard to simulate with MC, a compromise where a downscaled MC simulation with the RK solver could be used instead.
+If very fast runtimes are a concern for simple scenarios, then the RK solver is maybe better.
+But, for more complex schenrios, the MC solver is preferred due to its ability to produce a range of outcomes, and give an indication as to what range of outcomes one could expect.
+
+
+\section{Conclusion}
+To conclude, for the simpler cases where the thoretical expected values are valid, both the MC and RK solver 
+produce similar results.
+The only advantage the RK model is its speed, as the MC model produce a variety of outcomes, and can define a domain of possible outcomes rather than just the most likely one, giving insight to possible, less likely scenarios that are still worth considering.
+Through the many runs and results presented, increasing $d_I$ seem to make infections less likely to reach a non-zero steady state in the population. Additionally, seasonal variations add more variety to the onset and peak of the infection, while the time where the infection ends seems to be unchanged.
+Lastly, vaccines are an extremely powerful tool, where if they are introduced early they can almost completely negate a pandemic with very few deaths.
