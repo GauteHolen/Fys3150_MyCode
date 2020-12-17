@@ -47,7 +47,7 @@ void RK_solver::write_to_file(string filename){
 }
 
 void RK_solver::print_runtime(){
-    cout<<"RK solver runtime = "<<runtime<<endl;
+    cout<<"RK solver runtime = "<<std::setprecision(6)<<runtime<<endl;
 }
 
 /**
@@ -211,9 +211,12 @@ void RK_solver::solve(double t_0, double t_n, int _n_steps,
 
         t(i+1) = ti + h;
         }
-        double end = omp_get_wtime();
-        runtime = end-start;
+        
+        
     }
+
+    double end = omp_get_wtime();
+    runtime = end-start;
     
     
 

@@ -4,7 +4,6 @@
 #include <armadillo>
 #include <fstream>
 #include <iomanip>
-#include "functions.hpp"
 
 using namespace std;
 

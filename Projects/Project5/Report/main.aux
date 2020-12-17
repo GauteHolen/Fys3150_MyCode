@@ -1,19 +1,60 @@
 \relax 
+\@nameuse{bbl@beforestart}
+\babel@aux{english}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Algorithms, implementation and testing}{1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Runge-Kutta model}{1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Monte Carlo method}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Tests}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Testing the RK solver with expected values}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Testing the population class in the MC solver}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Optimizations and runtimes}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}2 vs 3 equations in RK solver}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Using array of functions to avoid if-statements in MC solver}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}Compiler flag optimizations}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4}OpenMP for multiple consecutive runs of MC solver}{2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Analysis}{2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces kamsdoka\relax }}{2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Theoretical Background}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Algorithms, implementation and testing}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Runge-Kutta model}{1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Monte Carlo method}{2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Transition probabilities in Monte Carlo method\relax }}{2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:default}{{1}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{3}\protected@file@percent }
+\newlabel{tab:transitions}{{1}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Comparison of RK solver (dashed) and MC simulation (line) with expected values (horizontal dashed) with $a=4$, $b=1$ and $c=0.5$\relax }}{3}\protected@file@percent }
+\newlabel{fig:comparetest}{{1}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Tests}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Testing the RK solver with expected values}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Testing the population manager in the MC solver}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Optimizations and runtimes}{3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces A comparison of runtimes between the RK solver and the MC solver.\relax }}{4}\protected@file@percent }
+\newlabel{tab:single_runtimes}{{2}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}2 vs 3 equations in RK solver}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Using array of functions to avoid if-statements in MC solver}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Compiler flag optimizations}{4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Runtimes with different compiler flag opimizations for single run RK and multiple run MC.\relax }}{5}\protected@file@percent }
+\newlabel{tab:compilerflags}{{3}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Analysis}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Error and accuracy}{5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparison of RK solver (dashed) and MC simulation (line) with expected values (horizontal dashed) with $a=4$, $b=4$ and $c=0.5$\relax }}{6}\protected@file@percent }
+\newlabel{fig:error_Iover}{{2}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Comparison of RK solver (dashed) and MC simulation (line) with expected values (horizontal dashed) with $a=4$, $b=4$ and $c=0.5$\relax }}{6}\protected@file@percent }
+\newlabel{fig:error_Ipeak}{{3}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The impact of changing b}{6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Comparison of RK solver (dashed) and MC simulation (line) with expected values (horizontal dashed) with $a=4$, $b=4$ and $c=0.5$\relax }}{7}\protected@file@percent }
+\newlabel{fig:error_meanI}{{4}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Vital Parameters}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison of RK solver (dashed) and MC simulation (line) with expected values (horizontal dashed) with fixed $a=4$ and $c=0.5$. $b$ has values 1(a), 2(b), 3(c) and 4(d). The horizontal dashed lines are the expected values.\relax }}{8}\protected@file@percent }
+\newlabel{fig:b}{{5}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Seasonal Variation}{8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Disease development for $a=4$, $b=2$, $c=0.5$, $e=0.011$ and $d=0.01$. $d_I$ varies as 0.1 (a), 0.5(b) and 1(c and d), with 100 runs collecting the statistics in (d)\relax }}{9}\protected@file@percent }
+\newlabel{fig:vitalb2}{{6}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A run with initial infections = 20, with $a=4$, $b=2$, $c=0.5$, $e=0.011$, $d=0.01$ and $d_I=1$.\relax }}{10}\protected@file@percent }
+\newlabel{fig:vitalI20}{{7}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Vaccines}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Accuracy of models}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}MC vs RK, strengths and weaknesses}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Disease development for $a=4$, $b=2$, $c=0.5$, with seasonal variation amplitude $A \in \{1,2,3,4\}$.\relax }}{11}\protected@file@percent }
+\newlabel{fig:seasonalb2}{{8}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Disease development for $a=4$, $b=1$, $c=0.5$, with seasonal variation amplitude $A \in \{1,4\}$.\relax }}{12}\protected@file@percent }
+\newlabel{fig:seasonalb1}{{9}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Disease statistics for Infections after steady state for $a=4$, $b=1$ (a) and $b=2$ (b), $c=0.5$, with seasonal variation amplitude $A = 4$.\relax }}{12}\protected@file@percent }
+\newlabel{fig:seasonalb1}{{10}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Infection peak for $a=4$, $b=1$ (a) and $b=2$ (b), $c=0.5$, with seasonal variation amplitude $A = 4$, and vital parameters $e=0.011$, $d=0.01$ and $d_I=1$ collecting statistics over 200 runs.\relax }}{13}\protected@file@percent }
+\newlabel{fig:seasonalI_peak}{{11}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Infection over for $a=4$, $b=2$ (b), $c=0.5$, with seasonal variation amplitude $A = 4$, and vital parameters $e=0.011$, $d=0.01$ and $d_I=1$ collecting statistics over 200 runs.\relax }}{13}\protected@file@percent }
+\newlabel{fig:seasonalI_over}{{12}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Disease development for $a=4$, $b=1$, $c=0.5$, with vaccination rates $f=1$ (a and b) and $f=8$ (c and d)\relax }}{14}\protected@file@percent }
+\newlabel{fig:latevacc}{{13}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Vaccination rates effect on disease development for $a=4$, $b=1$, $c=0.5$, with vaccination rates $f=0$ (a), $f=0.5$ (b), $f=1$ (a), $f=4$ (a)\relax }}{15}\protected@file@percent }
+\newlabel{fig:earlyvacc}{{14}{15}}

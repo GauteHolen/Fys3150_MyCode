@@ -121,6 +121,9 @@ class StatModule:
             ax2.set_ylabel("Vaccinations", color=color[4])
             ax2.tick_params(axis='y', labelcolor=color[4])
 
+        elif self.has_vacc!=True and multifig==True:
+            ax2.yaxis.set_visible(False)
+
         
         if self.has_I_zero:
             ax1.axvline(x=self.t_I_zero, ymin=0,ymax=1, color='grey', linestyle=linestyle)
@@ -169,8 +172,10 @@ class StatModule:
 
         total_DI=[]
         total_DI.append(self.DI[0])
+        death_count=0
         for i in range(1,len(self.DI)):
-            total_DI.append(total_DI[i-1]+self.DI[i])
+            death_count+=self.DI[i]
+            total_DI.append(death_count)
 
         ax2 = ax1.twinx()
 
@@ -205,7 +210,7 @@ class StatModule:
         ax2.plot(self.t,d, color=color[5], linestyle='dotted')
         ax2.plot(self.t,e, color=color[4], linestyle='dotted')
         ax2.tick_params(axis='y', labelcolor=color[6])
-        ax2.set_ylabel("rate", color=color[6])
+        ax2.set_ylabel("running mean rate", color=color[6])
 
         ax1.plot(self.t,self.I, color='green')
         ax1.plot(self.t,total_DI, color=color[2])

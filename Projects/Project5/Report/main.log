@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.12.6)  15 DEC 2020 03:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.12.6)  17 DEC 2020 00:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -8,8 +8,8 @@ entering extended mode
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-02-25> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
 \c@part=\count167
 \c@section=\count168
@@ -22,12 +22,59 @@ File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+))
+\Gm@cnth=\count175
+\Gm@cntv=\count176
+\c@Gm@tempcnt=\count177
+\Gm@bindingoffset=\dimen135
+\Gm@wd@mp=\dimen136
+\Gm@odd@mp=\dimen137
+\Gm@even@mp=\dimen138
+\Gm@layoutwidth=\dimen139
+\Gm@layoutheight=\dimen140
+\Gm@layouthoffset=\dimen141
+\Gm@layoutvoffset=\dimen142
+\Gm@dimlist=\toks16
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/02/28 3.41 The Babel package
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/02/28 3.41 Babel switching mechanism
+) (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/02/28 3.41 Babel common definitions
+\babel@savecnt=\count178
+\U@D=\dimen143
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count179
+)
+Package babel Info: \l@british = using hyphenrules for english
+(babel)             (\language0) on input line 82.
+Package babel Info: \l@UKenglish = using hyphenrules for english
+(babel)             (\language0) on input line 83.
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for english
+(babel)             (\language0) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for english
+(babel)             (\language0) on input line 108.
+)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
@@ -38,8 +85,8 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
  (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen135
-\Gin@req@width=\dimen136
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
 ) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
@@ -47,54 +94,93 @@ Package: caption 2020/01/03 v3.4h Customizing captions (AR)
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 61.
-\captionmargin=\dimen137
-\captionmargin@=\dimen138
-\captionwidth=\dimen139
-\caption@tempdima=\dimen140
-\caption@indent=\dimen141
-\caption@parindent=\dimen142
-\caption@hangindent=\dimen143
+\captionmargin=\dimen146
+\captionmargin@=\dimen147
+\captionwidth=\dimen148
+\caption@tempdima=\dimen149
+\caption@indent=\dimen150
+\caption@parindent=\dimen151
+\caption@hangindent=\dimen152
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count175
-\c@continuedfloat=\count176
+\c@caption@flags=\count180
+\c@continuedfloat=\count181
 )
-\c@subfigure=\count177
-\c@subtable=\count178
+\c@subfigure=\count182
+\c@subtable=\count183
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-02-23 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count179
+\l__kernel_color_stack_int=\count184
 \l__pdf_internal_box=\box45
-) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.aux)
+) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.aux
+
+LaTeX Warning: Label `fig:seasonalb1' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 472.03123pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 652.70622pt, 71.13188pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=472.03123pt
+* \textheight=652.70622pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count180
-\scratchdimen=\dimen144
+\scratchcounter=\count185
+\scratchdimen=\dimen153
 \scratchbox=\box46
-\nofMPsegments=\count181
-\nofMParguments=\count182
-\everyMPshowfont=\toks16
-\MPscratchCnt=\count183
-\MPscratchDim=\dimen145
-\MPnumerator=\count184
-\makeMPintoPDFobject=\count185
-\everyMPtoPDFconversion=\toks17
+\nofMPsegments=\count186
+\nofMParguments=\count187
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count188
+\MPscratchDim=\dimen154
+\MPnumerator=\count189
+\makeMPintoPDFobject=\count190
+\everyMPtoPDFconversion=\toks20
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -103,35 +189,224 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
- (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Abstract.tex) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/introduction.tex) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Algorithms.tex
+ (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Abstract.tex) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/introduction.tex) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Thery.tex) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Algorithms.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 9.
+(Font)              <10.95> on input line 9.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 9.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 9.
- (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/testing_runtimes.tex)) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Analysis.tex (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/figures/default.tex
-<plots/RK_solver_default_a_4_b_1_c_0.5.png, id=1, 462.528pt x 346.896pt>
-File: plots/RK_solver_default_a_4_b_1_c_0.5.png Graphic file (type png)
-<use plots/RK_solver_default_a_4_b_1_c_0.5.png>
-Package pdftex.def Info: plots/RK_solver_default_a_4_b_1_c_0.5.png  used on input line 3.
-(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Duscussion.tex) [2 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/RK_solver_default_a_4_b_1_c_0.5.png>] [3] (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/testing_runtimes.tex [2]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 12.
+
+<plots/Compare_getstd_a_4_b_1_c_0.5.png, id=19, 462.528pt x 346.896pt>
+File: plots/Compare_getstd_a_4_b_1_c_0.5.png Graphic file (type png)
+<use plots/Compare_getstd_a_4_b_1_c_0.5.png>
+Package pdftex.def Info: plots/Compare_getstd_a_4_b_1_c_0.5.png  used on input line 14.
+(pdftex.def)             Requested size: 254.39117pt x 190.79338pt.
+[3 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_getstd_a_4_b_1_c_0.5.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+)) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Analysis.tex [4]
+<plots/MC_solver_multiple_a_4_b_4_c_0.5500over_I500.png, id=29, 462.528pt x 346.896pt>
+File: plots/MC_solver_multiple_a_4_b_4_c_0.5500over_I500.png Graphic file (type png)
+<use plots/MC_solver_multiple_a_4_b_4_c_0.5500over_I500.png>
+Package pdftex.def Info: plots/MC_solver_multiple_a_4_b_4_c_0.5500over_I500.png  used on input line 23.
+(pdftex.def)             Requested size: 254.39117pt x 190.79338pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<plots/MC_solver_multiple_a_4_b_4_c_0.5500Peak_I500.png, id=30, 462.528pt x 346.896pt>
+File: plots/MC_solver_multiple_a_4_b_4_c_0.5500Peak_I500.png Graphic file (type png)
+<use plots/MC_solver_multiple_a_4_b_4_c_0.5500Peak_I500.png>
+Package pdftex.def Info: plots/MC_solver_multiple_a_4_b_4_c_0.5500Peak_I500.png  used on input line 34.
+(pdftex.def)             Requested size: 254.39117pt x 190.79338pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<plots/MC_solver_error_a_4_b_1_c_0.5I_SS_mcs_2399.png, id=31, 462.528pt x 346.896pt>
+File: plots/MC_solver_error_a_4_b_1_c_0.5I_SS_mcs_2399.png Graphic file (type png)
+<use plots/MC_solver_error_a_4_b_1_c_0.5I_SS_mcs_2399.png>
+Package pdftex.def Info: plots/MC_solver_error_a_4_b_1_c_0.5I_SS_mcs_2399.png  used on input line 44.
+(pdftex.def)             Requested size: 254.39117pt x 190.79338pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<plots/Compare_bbb_a_4_b_1_c_0.5.png, id=32, 462.528pt x 346.896pt>
+File: plots/Compare_bbb_a_4_b_1_c_0.5.png Graphic file (type png)
+<use plots/Compare_bbb_a_4_b_1_c_0.5.png>
+Package pdftex.def Info: plots/Compare_bbb_a_4_b_1_c_0.5.png  used on input line 58.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_bbb_a_4_b_2_c_0.5.png, id=33, 462.528pt x 346.896pt>
+File: plots/Compare_bbb_a_4_b_2_c_0.5.png Graphic file (type png)
+<use plots/Compare_bbb_a_4_b_2_c_0.5.png>
+Package pdftex.def Info: plots/Compare_bbb_a_4_b_2_c_0.5.png  used on input line 59.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_bbb_a_4_b_3_c_0.5.png, id=34, 462.528pt x 346.896pt>
+File: plots/Compare_bbb_a_4_b_3_c_0.5.png Graphic file (type png)
+<use plots/Compare_bbb_a_4_b_3_c_0.5.png>
+Package pdftex.def Info: plots/Compare_bbb_a_4_b_3_c_0.5.png  used on input line 60.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_bbb_a_4_b_4_c_0.5.png, id=35, 462.528pt x 346.896pt>
+File: plots/Compare_bbb_a_4_b_4_c_0.5.png Graphic file (type png)
+<use plots/Compare_bbb_a_4_b_4_c_0.5.png>
+Package pdftex.def Info: plots/Compare_bbb_a_4_b_4_c_0.5.png  used on input line 61.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+[5]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_multiple_a_4_b_4_c_0.5500over_I500.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_multiple_a_4_b_4_c_0.5500Peak_I500.png>]
+<plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.1.png, id=44, 462.528pt x 346.896pt>
+File: plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.1.png Graphic file (type png)
+<use plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.1.png>
+Package pdftex.def Info: plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.1.png  used on input line 81.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.5.png, id=45, 462.528pt x 346.896pt>
+File: plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.5.png Graphic file (type png)
+<use plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.5.png>
+Package pdftex.def Info: plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.5.png  used on input line 82.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vital_a_4_b_2_c_0.5_IdI1.png, id=46, 462.528pt x 346.896pt>
+File: plots/MC_solver_vital_a_4_b_2_c_0.5_IdI1.png Graphic file (type png)
+<use plots/MC_solver_vital_a_4_b_2_c_0.5_IdI1.png>
+Package pdftex.def Info: plots/MC_solver_vital_a_4_b_2_c_0.5_IdI1.png  used on input line 83.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_multiple_a_4_b_2_c_0.5100over_I100dI1.png, id=47, 462.528pt x 346.896pt>
+File: plots/MC_solver_multiple_a_4_b_2_c_0.5100over_I100dI1.png Graphic file (type png)
+<use plots/MC_solver_multiple_a_4_b_2_c_0.5100over_I100dI1.png>
+Package pdftex.def Info: plots/MC_solver_multiple_a_4_b_2_c_0.5100over_I100dI1.png  used on input line 84.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vitalI20_a_4_b_2_c_0.5_IdI1.png, id=48, 462.528pt x 346.896pt>
+File: plots/MC_solver_vitalI20_a_4_b_2_c_0.5_IdI1.png Graphic file (type png)
+<use plots/MC_solver_vitalI20_a_4_b_2_c_0.5_IdI1.png>
+Package pdftex.def Info: plots/MC_solver_vitalI20_a_4_b_2_c_0.5_IdI1.png  used on input line 105.
+(pdftex.def)             Requested size: 254.39117pt x 190.79338pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_error_a_4_b_1_c_0.5I_SS_mcs_2399.png>]
+<plots/Compare_seasonalA1_a_4_b_2_c_0.5.png, id=54, 462.528pt x 346.896pt>
+File: plots/Compare_seasonalA1_a_4_b_2_c_0.5.png Graphic file (type png)
+<use plots/Compare_seasonalA1_a_4_b_2_c_0.5.png>
+Package pdftex.def Info: plots/Compare_seasonalA1_a_4_b_2_c_0.5.png  used on input line 122.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_seasonalA2_a_4_b_2_c_0.5.png, id=55, 462.528pt x 346.896pt>
+File: plots/Compare_seasonalA2_a_4_b_2_c_0.5.png Graphic file (type png)
+<use plots/Compare_seasonalA2_a_4_b_2_c_0.5.png>
+Package pdftex.def Info: plots/Compare_seasonalA2_a_4_b_2_c_0.5.png  used on input line 123.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_seasonalA3_a_4_b_2_c_0.5.png, id=56, 462.528pt x 346.896pt>
+File: plots/Compare_seasonalA3_a_4_b_2_c_0.5.png Graphic file (type png)
+<use plots/Compare_seasonalA3_a_4_b_2_c_0.5.png>
+Package pdftex.def Info: plots/Compare_seasonalA3_a_4_b_2_c_0.5.png  used on input line 124.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_seasonalA4_a_4_b_2_c_0.5.png, id=57, 462.528pt x 346.896pt>
+File: plots/Compare_seasonalA4_a_4_b_2_c_0.5.png Graphic file (type png)
+<use plots/Compare_seasonalA4_a_4_b_2_c_0.5.png>
+Package pdftex.def Info: plots/Compare_seasonalA4_a_4_b_2_c_0.5.png  used on input line 125.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_seasonalA1_a_4_b_1_c_0.5.png, id=58, 462.528pt x 346.896pt>
+File: plots/Compare_seasonalA1_a_4_b_1_c_0.5.png Graphic file (type png)
+<use plots/Compare_seasonalA1_a_4_b_1_c_0.5.png>
+Package pdftex.def Info: plots/Compare_seasonalA1_a_4_b_1_c_0.5.png  used on input line 134.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_seasonalA4_a_4_b_1_c_0.5.png, id=59, 462.528pt x 346.896pt>
+File: plots/Compare_seasonalA4_a_4_b_1_c_0.5.png Graphic file (type png)
+<use plots/Compare_seasonalA4_a_4_b_1_c_0.5.png>
+Package pdftex.def Info: plots/Compare_seasonalA4_a_4_b_1_c_0.5.png  used on input line 135.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_seasonalA4_a_4_b_2_c_0.5I_SS_mcs_2079920798.png, id=60, 462.528pt x 346.896pt>
+File: plots/MC_solver_seasonalA4_a_4_b_2_c_0.5I_SS_mcs_2079920798.png Graphic file (type png)
+<use plots/MC_solver_seasonalA4_a_4_b_2_c_0.5I_SS_mcs_2079920798.png>
+Package pdftex.def Info: plots/MC_solver_seasonalA4_a_4_b_2_c_0.5I_SS_mcs_2079920798.png  used on input line 144.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_seasonalA4_a_4_b_1_c_0.5I_SS_mcs_43994398.png, id=61, 462.528pt x 346.896pt>
+File: plots/MC_solver_seasonalA4_a_4_b_1_c_0.5I_SS_mcs_43994398.png Graphic file (type png)
+<use plots/MC_solver_seasonalA4_a_4_b_1_c_0.5I_SS_mcs_43994398.png>
+Package pdftex.def Info: plots/MC_solver_seasonalA4_a_4_b_1_c_0.5I_SS_mcs_43994398.png  used on input line 145.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_multiple_a_4_b_1_c_0.5200Peak_I200.png, id=62, 462.528pt x 346.896pt>
+File: plots/MC_solver_multiple_a_4_b_1_c_0.5200Peak_I200.png Graphic file (type png)
+<use plots/MC_solver_multiple_a_4_b_1_c_0.5200Peak_I200.png>
+Package pdftex.def Info: plots/MC_solver_multiple_a_4_b_1_c_0.5200Peak_I200.png  used on input line 152.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_multiple_a_4_b_2_c_0.5200Peak_I200.png, id=63, 462.528pt x 346.896pt>
+File: plots/MC_solver_multiple_a_4_b_2_c_0.5200Peak_I200.png Graphic file (type png)
+<use plots/MC_solver_multiple_a_4_b_2_c_0.5200Peak_I200.png>
+Package pdftex.def Info: plots/MC_solver_multiple_a_4_b_2_c_0.5200Peak_I200.png  used on input line 153.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_multiple_a_4_b_2_c_0.5200over_I200.png, id=64, 462.528pt x 346.896pt>
+File: plots/MC_solver_multiple_a_4_b_2_c_0.5200over_I200.png Graphic file (type png)
+<use plots/MC_solver_multiple_a_4_b_2_c_0.5200over_I200.png>
+Package pdftex.def Info: plots/MC_solver_multiple_a_4_b_2_c_0.5200over_I200.png  used on input line 161.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_vaccines_a_4_b_1_c_0.5_f_1.png, id=65, 462.528pt x 346.896pt>
+File: plots/Compare_vaccines_a_4_b_1_c_0.5_f_1.png Graphic file (type png)
+<use plots/Compare_vaccines_a_4_b_1_c_0.5_f_1.png>
+Package pdftex.def Info: plots/Compare_vaccines_a_4_b_1_c_0.5_f_1.png  used on input line 172.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_1_IdI.png, id=66, 462.528pt x 346.896pt>
+File: plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_1_IdI.png Graphic file (type png)
+<use plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_1_IdI.png>
+Package pdftex.def Info: plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_1_IdI.png  used on input line 173.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/Compare_vaccines_a_4_b_1_c_0.5_f_4.png, id=67, 462.528pt x 346.896pt>
+File: plots/Compare_vaccines_a_4_b_1_c_0.5_f_4.png Graphic file (type png)
+<use plots/Compare_vaccines_a_4_b_1_c_0.5_f_4.png>
+Package pdftex.def Info: plots/Compare_vaccines_a_4_b_1_c_0.5_f_4.png  used on input line 174.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_8_IdI.png, id=68, 462.528pt x 346.896pt>
+File: plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_8_IdI.png Graphic file (type png)
+<use plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_8_IdI.png>
+Package pdftex.def Info: plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_8_IdI.png  used on input line 175.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+ [8 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_bbb_a_4_b_1_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_bbb_a_4_b_2_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_bbb_a_4_b_3_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_bbb_a_4_b_4_c_0.5.png>] [9 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.1.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vital_a_4_b_2_c_0.5_IdI0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vital_a_4_b_2_c_0.5_IdI1.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_multiple_a_4_b_2_c_0.5100over_I100dI1.png>]
+<plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_IdI.png, id=83, 462.528pt x 346.896pt>
+File: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_IdI.png Graphic file (type png)
+<use plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_IdI.png>
+Package pdftex.def Info: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_IdI.png  used on input line 183.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_0.5_IdI.png, id=84, 462.528pt x 346.896pt>
+File: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_0.5_IdI.png Graphic file (type png)
+<use plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_0.5_IdI.png>
+Package pdftex.def Info: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_0.5_IdI.png  used on input line 184.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_1_IdI.png, id=85, 462.528pt x 346.896pt>
+File: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_1_IdI.png Graphic file (type png)
+<use plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_1_IdI.png>
+Package pdftex.def Info: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_1_IdI.png  used on input line 185.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+<plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_4_IdI.png, id=86, 462.528pt x 346.896pt>
+File: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_4_IdI.png Graphic file (type png)
+<use plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_4_IdI.png>
+Package pdftex.def Info: plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_4_IdI.png  used on input line 186.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+) (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/sections/Duscussion.tex) [10 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vitalI20_a_4_b_2_c_0.5_IdI1.png>] [11 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_seasonalA1_a_4_b_2_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_seasonalA2_a_4_b_2_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_seasonalA3_a_4_b_2_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_seasonalA4_a_4_b_2_c_0.5.png>] [12 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_seasonalA1_a_4_b_1_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_seasonalA4_a_4_b_1_c_0.5.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_seasonalA4_a_4_b_2_c_0.5I_SS_mcs_2079920798.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_seasonalA4_a_4_b_1_c_0.5I_SS_mcs_43994398.png>] [13 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_multiple_a_4_b_1_c_0.5200Peak_I200.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_multiple_a_4_b_2_c_0.5200Peak_I200.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_multiple_a_4_b_2_c_0.5200over_I200.png>] [14 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_vaccines_a_4_b_1_c_0.5_f_1.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_1_IdI.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/Compare_vaccines_a_4_b_1_c_0.5_f_4.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vaccines_a_4_b_1_c_0.5_f_8_IdI.png>] [15 </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_IdI.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_0.5_IdI.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_1_IdI.png> </home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/plots/MC_solver_vaccinesI20_a_4_b_1_c_0.5_f_4_IdI.png>] (/home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2370 strings out of 482938
- 40441 string characters out of 5960546
- 269059 words of memory out of 5000000
- 17632 multiletter control sequences out of 15000+600000
- 536592 words of font info for 38 fonts, out of 8000000 for 9000
+ 3723 strings out of 482938
+ 66360 string characters out of 5960546
+ 313867 words of memory out of 5000000
+ 18923 multiletter control sequences out of 15000+600000
+ 537562 words of font info for 41 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 48i,6n,46p,336b,271s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.pdf (3 pages, 80341 bytes).
+ 48i,10n,51p,428b,436s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on /home/gaute/uio/CompPhys/Fys3150_MyCode/Projects/Project5/Report/main.pdf (15 pages, 1287357 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 21 compressed objects within 1 object stream
+ 162 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 161 words of extra memory for PDF output out of 10000 (max. 10000000)
 

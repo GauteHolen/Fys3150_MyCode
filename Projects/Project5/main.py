@@ -8,41 +8,48 @@ from stats import StatModule
 
 
 do_tests = False
-do_compile = True
+do_compile = False
 do_execute = True
 do_plots = True
 
 #TODO f independent of S in RK and MC? fixed vaccine rate independent of population?
 
-mode = "getstd"
+#mode: 'BULK' for bulk vacc. 'multiple' for many runs of MC
+
+mode = "vaccinesI20"
 
 a = 4
 b = 1
 c = 0.5
 
-S_0 = 300
-I_0 = 100
+S_0 = 380
+I_0 = 20
 R_0 = 0
 N=S_0+I_0+R_0
 
 t_0 = 0
 t_n = 10
-n_steps = 5000
+n_steps = 1000
 
-e = 0.0#11
-d = 0.0#1
-dI = 0.0#1
+e = 0.011
+d = 0.01
+dI = 1 #MODIFY THIS ONE
 
-f = 0#2
+f = 0
+
 w = 2*math.pi
-A = 0#4
+A = 0
 
 f_BULK = 0 
 vaccine_stock = 0
 
-n_runs = 300
+n_runs = 100
 
 filename = mode+"_a_"+str(a)+"_b_"+str(b)+"_c_"+str(c)
+if mode == 'multiple':
+    filename+=str(n_runs)
+if f > 0:
+    filename+='_f_'+str(f)
 
 
 args =mode+" "+filename+" "+str(a)+" "+str(b)+" "+str(c)+" "+str(S_0)+" "+str(I_0)+" "+str(R_0)+" "+str(t_0)+" "+str(t_n)+" "+str(n_steps)
@@ -102,7 +109,7 @@ if do_plots:
         plt.title("RK (dashed) and MC (line) disease development")
         plt.savefig("./Projects/Project5/Report/plots/Compare_"+filename+".png")
 
-        plot.plot_std("MC_solver_"+filename,'I','Infected people','time','frequency','Infection statistics after steady state','I_SS',t_start=4)
+        plot.plot_std("MC_solver_"+filename,'I','Infected people','infected people','frequency','Infection statistics after steady state','I_SS',t_start=4)
 
     else:
         plot.plot_std("MC_solver_"+filename,'Peak[t]','Infection peak','time','frequency','Infection peak statstics','Peak_I')

@@ -4,21 +4,100 @@ As this project is new this year (as far as I know), some trial and error, as we
 
 
 \subsection{Runge-Kutta model}
-
-
-When the population is stable, such that $N$ is constant, we have that
-\begin{equation}
-    N=I+R+S
-\end{equation}
-Which can be simplified such that
+The Runge-Kutta method is a method similar to Euler's method for solving ODEs, however it provides an intermediate step in between the steps, which leads to better results.
+To understand this, we begin with the equation
 $$
-R=N-R-S
+\frac{d y}{d t}=f(t, y)
 $$
-So that $R$ is plugged into the equation for $S$, and we only need 2 equations. 
-However, as is the case with the vital parameters where N is changing, we now have to update N and R, which depend on each other, 
-which is no longer possible. This version of the RK-model turns out to be signifficantly slowe, as R now needs to be calculated for every step.
+where
+$$
+y(t)=\int f(t, y) d t
+$$
+and
+$$
+y_{i+1}=y_{i}+\int_{t_{i}}^{t_{i+1}} f(t, y) d t
+$$
+The final algorithm is
+$$
+\int_{t_{i}}^{t_{i+1}} f(t, y) d t \approx \frac{h}{6}\left[f\left(t_{i}, y_{i}\right)+4 f\left(t_{i+1 / 2}, y_{i+1 / 2}\right)+f\left(t_{i+1}, y_{i+1}\right)\right]+O\left(h^{5}\right)
+$$
+so that
+$$
+y_{i+1} \approx y_{i}+\frac{h}{6}\left[f\left(t_{i}, y_{i}\right)+2 f\left(t_{i+1 / 2}, y_{i+1 / 2}\right)+2 f\left(t_{i+1 / 2}, y_{i+1 / 2}\right)+f\left(t_{i+1}, y_{i+1}\right)\right]
+$$
+To implement this it is easier to consider each step as $k_i$, $i\in \{1,2,3,4\}$.
+The final algorithm becomes:
+$$
+k_{1}=h f\left(t_{i}, y_{i}\right)
+$$
+$$
+k_{2}=h f\left(t_{i}+h / 2, y_{i}+k_{1} / 2\right)
+$$
+$$
+k_{3}=h f\left(t_{i}+h / 2, y_{i}+k_{2} / 2\right)
+$$
+$$
+k_{4}=h f\left(t_{i}+h, y_{i}+k_{3}\right)
+$$
+$$
+y_{i+1}=y_{i}+\frac{1}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right)
+$$
+In our case, where $f$ is a function $f(t,S,I,R)$, we define $Sk_i$, $Ik_i$ and $Rk_i$ where $i\in \{1,2,3,4\}$.
+So that 
+$$
+Sk_1 = hf_S(t_i,S_i,I_i,R_i)
+$$
+and
+$$
+Sk_{2}=hf_S(t_i+0.5h,S_i+0.5Sk_1,I_i+0.5Ik_1,R_i+0.5Rk_1)
+$$
+and so forth until finally
+$$
+S_{i+1}=S_i+\frac{1}{6}(Sk_1+2Sk_2+2Sk_3+Sk_4)
+$$
+This will be the same for $I$ and $R$.
+
+To apply different models for $S$, $I$ and $R$, the algorithm just changes the function for f.
+Before every run, a pointer to which member function to use for $S$, $I$ and $R$ is assigned. 
+These member functions take in different input parameters, implementing vital parameters, seasonal variations and vaccines.
+By using pointers to functions, the actual RK-solver only has to be written once, where the function $f$ is easily changed for different runs.
 
 \subsection{Monte Carlo method}
+In the Monte Carlo method, the approach taken here is that for every timestep, there is a chance that a member in the population can change state.
+These probailities, when the timestep is small enough so that only, on average, one such chang ecan happen per timestep, can be considred a transition probability.
+Most of the transition probabilites are independent of the amount of people in the population, while some depend on things in the population such as cahnce of infection whcih depends on the amount of infected people.
+
+
+To manage the population, a class Person is used, which does a few simple things:
+\begin{enumerate}
+    \item Holds the state of a member of the population (0 = Suspeptible, 1 = Infected, 2 = Recovering)
+    \item Has simple get and set functions for the state
+\end{enumerate}
+
+For each timestep, or Monte Carlo cycle, each person in the population has a transition probability to change state depending on iputs as seen in \textit{Table} \ref{tab:transitions}
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{lll}
+    Transition   & Value          & Note                       \\
+    S to I       & $a\frac{I_{total}}{N}\Delta t$ & Getting infected           \\
+    S to R       & $f \Delta t$           & Getting vaccine            \\
+    I to R       & $b \Delta t$           & Recovering                 \\
+    R to I       & $c \Delta t$           & Losing immunity            \\
+    Any to birth & $e \Delta t$           & Giving birth               \\
+    Any to dead  & $d \Delta t$           & Natural death              \\
+    I to dead    & $d_I \Delta t$          & Dying from infection
+    \end{tabular}
+    \caption{Transition probabilities in Monte Carlo method}
+    \label{tab:transitions}
+    \end{table}
+
+The timestep is defined as 
+$$
+\Delta t=\min \left\{\frac{4}{a N}, \frac{1}{b N}, \frac{1}{c N}\right\}
+$$
+Ensuring approximately one transition per timestep. 
+If there are too many transitions per timestep, then the dynamic transition probability such as S to I won't have time to adjust between transitions, so that $I_{total}$ and $N$ aren't the corrent values.
 
 
 

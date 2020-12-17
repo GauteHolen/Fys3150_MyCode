@@ -45,7 +45,7 @@ void MC_solver::init_bulkvacc(double _f_BULK, int _bulk_stock){
 }
 
 void MC_solver::print_runtime(){
-    cout<<"MC solver runtime = "<<runtime<<endl;
+    cout<<"MC solver runtime = "<<std::setprecision(6)<<runtime<<endl;
 }
 
 /**

@@ -1,4 +1,3 @@
-#include "./cpp_codes/functions.hpp"
 #include "./cpp_codes/RK_solver.hpp"
 #include "./cpp_codes/MC_solver.hpp"
 #include <omp.h>

@@ -124,5 +124,6 @@ def plot_std(filename, columnname, label, xlabel, ylabel, title, outfile, t_star
     ax1.text(0.65, 0.95, textstr, transform=ax1.transAxes, fontsize=11,
             verticalalignment='top', bbox=props)
     plt.title(title)
+    outfile+=str(len(data))
     
     plt.savefig("./Projects/Project5/Report/plots/"+filename+outfile+".png")
